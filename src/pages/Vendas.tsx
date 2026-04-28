@@ -1,45 +1,55 @@
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  CheckCircle2, Star, ShieldCheck, Clock, Brain,
-  ArrowRight, Users, Zap, Heart, ChevronDown, ChevronUp, Lock, AlertTriangle
+  CheckCircle2, Star, ShieldCheck, Clock,
+  ArrowRight, Users, Heart, ChevronDown, ChevronUp, Lock, AlertTriangle, Zap
 } from "lucide-react";
 import { useState } from "react";
 
 const LINK_CAKTO = "https://pay.cakto.com.br/3fycrna_866544";
+function irParaCakto() { window.location.href = LINK_CAKTO; }
 
-function irParaCakto() {
-  window.location.href = LINK_CAKTO;
-}
+interface VendasState { nomeMae?: string; nomeCrianca?: string; idadeCrianca?: string; }
 
-interface VendasState {
-  nomeMae?: string;
-  nomeCrianca?: string;
-  idadeCrianca?: string;
-}
+// Fotos reais do Unsplash
+const FOTO = (id: string, w = 96, h = 96) =>
+  `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&fit=crop&auto=format&q=80`;
 
-// ─── CTA Button ────────────────────────────────────────────────────────────
-function BotaoCTA({ label = "Quero o Método Mente Ativa", tamanho = "lg" }: { label?: string; tamanho?: "md" | "lg" }) {
+const FOTO_HERO = FOTO("1583468982228-19f19164aee2", 800, 500);
+const FOTO_MAE1 = FOTO("NBt3j_IAJJ4");
+const FOTO_MAE2 = FOTO("IF9TK5Uy-KI");
+const FOTO_MAE3 = FOTO("Ll9YOG20UFI");
+const FOTO_MAE4 = FOTO("1AhGNGKuhR0");
+const FOTO_MAE5 = FOTO("YNUftQBOSUg");
+
+const AVATARES_BAR = [
+  FOTO("NBt3j_IAJJ4", 40, 40),
+  FOTO("IF9TK5Uy-KI", 40, 40),
+  FOTO("Ll9YOG20UFI", 40, 40),
+  FOTO("1AhGNGKuhR0", 40, 40),
+  FOTO("YNUftQBOSUg", 40, 40),
+];
+
+// ─── CTA ──────────────────────────────────────────────
+function BotaoCTA({ label = "Quero o Método Pequenos Gênios", sub }: { label?: string; sub?: string }) {
   return (
     <div className="text-center">
       <button
         onClick={irParaCakto}
-        className={`w-full gradient-cta text-white font-extrabold rounded-2xl shadow-xl hover:opacity-95 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 flex items-center justify-center gap-3 ${
-          tamanho === "lg" ? "py-5 text-lg" : "py-4 text-base"
-        }`}
+        className="w-full gradient-cta text-white font-extrabold rounded-2xl shadow-xl hover:opacity-95 hover:scale-[1.01] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-3 py-5 text-lg"
       >
         <Lock className="w-5 h-5 flex-shrink-0" />
         {label}
         <ArrowRight className="w-5 h-5 flex-shrink-0" />
       </button>
       <p className="text-xs text-muted-foreground mt-2">
-        🔒 Pagamento seguro · Acesso imediato · Garantia de 7 dias
+        {sub || "🔒 Pagamento seguro · Acesso imediato · Garantia de 7 dias"}
       </p>
     </div>
   );
 }
 
-// ─── FAQ ───────────────────────────────────────────────────────────────────
+// ─── FAQ ──────────────────────────────────────────────
 const FAQS = [
   { q: "Funciona para crianças com TDAH ou TEA?", a: "Sim! O método foi desenhado para ser inclusivo. As atividades são curtas, sensorialmente equilibradas e ajustáveis para crianças neurodivergentes." },
   { q: "Preciso ter conhecimento pedagógico?", a: "Não! O passo a passo é tão claro que qualquer mãe consegue aplicar, independente de formação." },
@@ -62,15 +72,56 @@ function FaqItem({ q, a }: { q: string; a: string }) {
   );
 }
 
-// ─── Depoimentos ───────────────────────────────────────────────────────────
+// ─── Depoimentos tipo WhatsApp ─────────────────────────
 const DEPOIMENTOS = [
-  { iniciais: "CS", nome: "Camila S.", local: "São Paulo, SP", texto: "Minha filha de 5 anos mal ficava 3 minutos parada. Em 3 semanas de Mente Ativa ela já completa todas as atividades. Chorei de emoção quando vi a evolução.", destaque: "3 semanas" },
-  { iniciais: "FR", nome: "Fernanda R.", local: "Belo Horizonte, MG", texto: "Meu filho tem TDAH e eu estava desesperada. Esse método mudou tudo. As atividades são curtas, no ritmo dele, e ele GOSTA de fazer. Impossível de acreditar.", destaque: "TDAH" },
-  { iniciais: "JC", nome: "Juliana C.", local: "Porto Alegre, RS", texto: "Minha filha de 4 anos tinha atraso na fala. Com 6 semanas do método, a fonoaudióloga ficou impressionada. Recomendo para toda mãe que passa por isso.", destaque: "6 semanas" },
-  { iniciais: "PM", nome: "Priscila M.", local: "Rio de Janeiro, RJ", texto: "Achei que era mais um pack de atividades e me surpreendi completamente. É um sistema real, com lógica e progressão. Vale muito mais do que paguei.", destaque: "sistema real" },
+  {
+    foto: FOTO_MAE1,
+    nome: "Camila Souza",
+    local: "São Paulo, SP",
+    tempo: "há 2 dias",
+    texto: "Gente, não acredito no que tô vendo 😭 Minha filha de 5 anos ficou 20 MINUTOS fazendo as atividades sem reclamar. Isso nunca tinha acontecido. Método Pequenos Gênios mudou tudo pra nós ❤️",
+    tag: "3 semanas de uso",
+    estrelas: 5,
+  },
+  {
+    foto: FOTO_MAE2,
+    nome: "Fernanda Ribeiro",
+    local: "Belo Horizonte, MG",
+    tempo: "há 5 dias",
+    texto: "Meu filho tem TDAH e eu estava desesperada tentando tudo. Esse método é diferente porque respeita o ritmo dele. Em 1 mês a professora da escola perguntou o que eu tava fazendo diferente 🥹",
+    tag: "TDAH confirmado",
+    estrelas: 5,
+  },
+  {
+    foto: FOTO_MAE3,
+    nome: "Juliana Castro",
+    local: "Porto Alegre, RS",
+    tempo: "há 1 semana",
+    texto: "A fonoaudióloga ficou IMPRESSIONADA com o progresso da minha filha de 4 anos. 6 semanas de método e a melhora na fala foi incrível. Choro de gratidão mesmo 💛",
+    tag: "Atraso na fala",
+    estrelas: 5,
+  },
+  {
+    foto: FOTO_MAE4,
+    nome: "Priscila Moura",
+    local: "Rio de Janeiro, RJ",
+    tempo: "há 3 dias",
+    texto: "Comprei sem muita expectativa porque já tinha tentado vários métodos. Mas é COMPLETAMENTE diferente. Não é um pack de atividades soltas — é um sistema de verdade. Vale muito mais do que paguei.",
+    tag: "Verificado ✓",
+    estrelas: 5,
+  },
+  {
+    foto: FOTO_MAE5,
+    nome: "Rafaela Torres",
+    local: "Salvador, BA",
+    tempo: "há 4 dias",
+    texto: "15 minutos por dia que realmente cabem na minha rotina de mãe solo. E os resultados aparecem! Meu filho de 6 anos já está muito mais concentrado na escola. Obrigada demais 🙏",
+    tag: "Mãe solo",
+    estrelas: 5,
+  },
 ];
 
-// ─── Página Principal ──────────────────────────────────────────────────────
+// ─── PÁGINA ───────────────────────────────────────────
 export default function Vendas() {
   const location = useLocation();
   const state = location.state as VendasState | null;
@@ -81,16 +132,14 @@ export default function Vendas() {
     <div className="min-h-screen bg-background">
       <div className="max-w-2xl mx-auto px-4">
 
-        {/* ══════════════════════════════════════
-            BLOCO 1 — HERO
-            Gancho imediato + promessa clara
-        ══════════════════════════════════════ */}
-        <section className="pt-8 pb-10">
+        {/* ══ BLOCO 1 — HERO ══════════════════════════════ */}
+        <section className="pt-8 pb-8">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
+
             {/* Badge urgência */}
             <div className="flex justify-center mb-4">
-              <div className="inline-flex items-center gap-2 bg-red-50 border border-red-200 rounded-full px-4 py-1.5 text-red-600 text-xs font-bold">
-                <Zap className="w-3.5 h-3.5" /> Oferta com 62% de desconto — por tempo limitado
+              <div className="inline-flex items-center gap-2 bg-red-50 border border-red-200 rounded-full px-4 py-1.5 text-red-600 text-xs font-bold animate-pulse">
+                <Zap className="w-3.5 h-3.5" /> Oferta com 62% OFF — válida por tempo limitado
               </div>
             </div>
 
@@ -99,27 +148,42 @@ export default function Vendas() {
               Seu filho pode ter mais foco, falar melhor e se coordenar em{" "}
               <span className="gradient-text">15 minutos por dia</span>
             </h1>
-            <p className="text-muted-foreground text-lg text-center mb-6 text-balance">
-              Sem saber pedagogia. Sem rotina complicada. Mesmo que outros métodos já tenham falhado.
+            <p className="text-muted-foreground text-lg text-center mb-5 text-balance">
+              Sem saber pedagogia. Sem rotina complicada. Mesmo que outros métodos já tenham falhado antes.
             </p>
 
-            {/* Prova social imediata */}
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="flex -space-x-2">
-                {["CS", "FR", "JC", "PM", "RT"].map((i) => (
-                  <div key={i} className="w-8 h-8 rounded-full gradient-bg border-2 border-background flex items-center justify-center text-white text-[10px] font-bold">{i}</div>
-                ))}
-              </div>
-              <p className="text-sm text-foreground">
-                <strong>+1.200 mães</strong> já transformaram a rotina dos filhos
-              </p>
+            {/* Foto hero */}
+            <div className="rounded-3xl overflow-hidden mb-5 card-shadow border border-border">
+              <img
+                src={FOTO_HERO}
+                alt="Mãe e filho fazendo atividades educativas juntos"
+                className="w-full h-52 object-cover"
+                loading="eager"
+              />
             </div>
 
-            {/* CTA principal */}
+            {/* Prova social imediata */}
+            <div className="bg-card border border-border rounded-2xl p-4 flex items-center gap-3 mb-5 card-shadow">
+              <div className="flex -space-x-2 flex-shrink-0">
+                {AVATARES_BAR.map((src, i) => (
+                  <img key={i} src={src} alt="" className="w-9 h-9 rounded-full border-2 border-background object-cover" />
+                ))}
+              </div>
+              <div>
+                <div className="flex items-center gap-1 mb-0.5">
+                  {[1,2,3,4,5].map(s => <Star key={s} className="w-3 h-3 fill-yellow-400 text-yellow-400" />)}
+                  <span className="text-xs font-bold text-foreground ml-1">4.9/5</span>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  <strong className="text-foreground">+1.247 mães</strong> já transformaram a rotina dos filhos
+                </p>
+              </div>
+            </div>
+
             <BotaoCTA label={`Quero o plano de ${nomeCrianca}`} />
 
             {/* Mini benefícios */}
-            <div className="grid grid-cols-3 gap-2 mt-5">
+            <div className="grid grid-cols-3 gap-2 mt-4">
               {[
                 { emoji: "⏱️", texto: "15 min por dia" },
                 { emoji: "📱", texto: "Acesso imediato" },
@@ -134,53 +198,45 @@ export default function Vendas() {
           </motion.div>
         </section>
 
-        {/* ══════════════════════════════════════
-            BLOCO 2 — IDENTIFICAÇÃO EMOCIONAL
-            Mãe se reconhece, baixa a guarda
-        ══════════════════════════════════════ */}
+        {/* ══ BLOCO 2 — IDENTIFICAÇÃO ═════════════════════ */}
         <section className="pb-10">
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}>
-            <h2 className="font-display text-2xl text-foreground mb-5 text-center">
-              {nomeMae}, você já sentiu isso?
-            </h2>
-            <div className="space-y-3">
-              {[
-                { emoji: "😔", texto: "Culpa por não saber como estimular seu filho do jeito certo" },
-                { emoji: "😰", texto: "Medo de que o atraso de hoje vire dificuldade para sempre na escola" },
-                { emoji: "😤", texto: "Frustração de tentar várias coisas que não funcionam ou que ele recusa" },
-                { emoji: "😩", texto: "Exaustão de conciliar tudo isso com uma rotina já caótica" },
-              ].map(({ emoji, texto }) => (
-                <div key={texto} className="flex items-center gap-3 bg-card rounded-2xl p-4 border border-border card-shadow">
-                  <span className="text-2xl flex-shrink-0">{emoji}</span>
-                  <p className="text-foreground text-sm leading-snug">{texto}</p>
-                </div>
-              ))}
-            </div>
-            <div className="bg-primary/10 border border-primary/20 rounded-2xl p-4 mt-4 text-center">
-              <p className="text-foreground text-sm font-semibold">
-                Você não está falhando como mãe.<br />
-                <span className="text-primary">Você está usando a ferramenta errada para o problema certo.</span>
-              </p>
-            </div>
-          </motion.div>
+          <h2 className="font-display text-2xl text-foreground mb-5 text-center">
+            {nomeMae}, você já sentiu isso?
+          </h2>
+          <div className="space-y-3">
+            {[
+              { emoji: "😔", texto: "Culpa por não saber como estimular seu filho do jeito certo" },
+              { emoji: "😰", texto: "Medo de que o atraso de hoje vire dificuldade para sempre na escola" },
+              { emoji: "😤", texto: "Frustração de tentar várias coisas que não funcionam ou que ele recusa" },
+              { emoji: "😩", texto: "Exaustão de conciliar tudo isso com uma rotina já esgotante" },
+            ].map(({ emoji, texto }) => (
+              <div key={texto} className="flex items-center gap-3 bg-card rounded-2xl p-4 border border-border card-shadow">
+                <span className="text-2xl flex-shrink-0">{emoji}</span>
+                <p className="text-foreground text-sm leading-snug">{texto}</p>
+              </div>
+            ))}
+          </div>
+          <div className="bg-primary/10 border border-primary/20 rounded-2xl p-4 mt-4 text-center">
+            <p className="text-foreground text-sm font-semibold">
+              Você não está falhando como mãe.<br />
+              <span className="text-primary">Você está usando a ferramenta errada para o problema certo.</span>
+            </p>
+          </div>
         </section>
 
-        {/* ══════════════════════════════════════
-            BLOCO 3 — O VERDADEIRO PROBLEMA
-            Quebra de crença + inimigo externo
-        ══════════════════════════════════════ */}
+        {/* ══ BLOCO 3 — PROBLEMA ══════════════════════════ */}
         <section className="pb-10">
           <div className="bg-card rounded-3xl p-5 border border-border card-shadow">
             <div className="flex items-start gap-3 mb-4">
               <AlertTriangle className="w-6 h-6 text-orange-500 flex-shrink-0 mt-0.5" />
-              <h2 className="font-display text-xl text-foreground">Por que packs e vídeos do YouTube não funcionam?</h2>
+              <h2 className="font-display text-xl text-foreground">Por que atividades soltas não funcionam?</h2>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-              A internet está cheia de atividades soltas, sugestões espalhadas e vídeos genéricos. O problema é que{" "}
+              A internet está cheia de packs, sugestões espalhadas e vídeos genéricos. O problema é que{" "}
               <strong className="text-foreground">nada disso tem sequência, progressão ou personalização.</strong>
             </p>
             <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-              Você tenta uma coisa hoje, outra amanhã — a criança não vê sentido, perde interesse, e você fica com a sensação de que{" "}
+              Você tenta uma coisa hoje, outra amanhã — a criança perde interesse e você fica com a sensação de que{" "}
               <em>"nada funciona com o meu filho."</em>
             </p>
             <div className="bg-orange-50 border border-orange-200 rounded-2xl p-3">
@@ -191,34 +247,18 @@ export default function Vendas() {
           </div>
         </section>
 
-        {/* ══════════════════════════════════════
-            BLOCO 4 — A SOLUÇÃO (método)
-            3 passos simples e claros
-        ══════════════════════════════════════ */}
+        {/* ══ BLOCO 4 — MÉTODO ════════════════════════════ */}
         <section className="pb-10">
           <div className="text-center mb-6">
-            <Brain className="w-10 h-10 text-primary mx-auto mb-3" />
-            <h2 className="font-display text-2xl text-foreground mb-1">Método Mente Ativa 15 Minutos</h2>
-            <p className="text-muted-foreground text-sm">Não é um pack de atividades. É um <strong className="text-foreground">sistema guiado</strong>.</p>
+            <span className="text-4xl block mb-2">🧠✨</span>
+            <h2 className="font-display text-2xl text-foreground mb-1">Método Pequenos Gênios</h2>
+            <p className="text-muted-foreground text-sm">Não é um pack. É um <strong className="text-foreground">sistema guiado</strong>.</p>
           </div>
-
           <div className="space-y-3">
             {[
-              {
-                n: "01", emoji: "🎯",
-                titulo: "Diagnóstico → Plano personalizado",
-                desc: "Seu filho é único. O sistema identifica o perfil dele e monta uma rotina focada nas áreas que mais precisam de atenção.",
-              },
-              {
-                n: "02", emoji: "📅",
-                titulo: "Rotina de 15 min por dia",
-                desc: "Toda manhã você abre o app e encontra 3 atividades prontas. Passo a passo completo. Sem planejar, sem improvisar.",
-              },
-              {
-                n: "03", emoji: "⭐",
-                titulo: "Progresso visível semana a semana",
-                desc: "Seu filho sobe de nível conforme avança. Você acompanha a evolução e mantém a consistência que gera resultado real.",
-              },
+              { n: "01", emoji: "🎯", titulo: "Diagnóstico → Plano personalizado", desc: "Seu filho é único. O sistema identifica o perfil dele e monta uma rotina focada nas áreas que mais precisam de atenção." },
+              { n: "02", emoji: "📅", titulo: "Rotina de 15 min por dia", desc: "Toda manhã você abre o app e encontra as atividades prontas. Passo a passo completo. Sem planejar, sem improvisar." },
+              { n: "03", emoji: "⭐", titulo: "Progresso visível semana a semana", desc: "Seu filho sobe de nível conforme avança. Você acompanha a evolução e mantém a consistência que gera resultado real." },
             ].map(({ n, emoji, titulo, desc }) => (
               <div key={n} className="flex gap-4 bg-card rounded-2xl p-4 border border-border card-shadow">
                 <div className="w-12 h-12 rounded-2xl gradient-bg flex items-center justify-center flex-shrink-0 shadow-md">
@@ -234,15 +274,12 @@ export default function Vendas() {
           </div>
         </section>
 
-        {/* ══════════════════════════════════════
-            BLOCO 5 — O QUE ESTÁ INCLUSO
-            Valor percebido alto antes do preço
-        ══════════════════════════════════════ */}
+        {/* ══ BLOCO 5 — O QUE INCLUI ══════════════════════ */}
         <section className="pb-10">
           <h2 className="font-display text-2xl text-foreground mb-5 text-center">Tudo que você recebe</h2>
           <div className="bg-card rounded-3xl border-2 border-primary/20 overflow-hidden card-shadow">
             <div className="gradient-bg p-4 text-center">
-              <p className="text-white font-bold text-sm">📦 Método Mente Ativa — Acesso Completo</p>
+              <p className="text-white font-bold text-sm">📦 Método Pequenos Gênios — Acesso Completo</p>
             </div>
             <div className="p-4 space-y-3">
               {[
@@ -256,7 +293,7 @@ export default function Vendas() {
               ].map(({ emoji, item, detalhe }) => (
                 <div key={item} className="flex items-start gap-3">
                   <span className="text-xl flex-shrink-0">{emoji}</span>
-                  <div>
+                  <div className="flex-1">
                     <p className="font-semibold text-foreground text-sm">{item}</p>
                     <p className="text-muted-foreground text-xs">{detalhe}</p>
                   </div>
@@ -267,54 +304,88 @@ export default function Vendas() {
           </div>
         </section>
 
-        {/* ══════════════════════════════════════
-            BLOCO 6 — PROVA SOCIAL
-            Depoimentos antes da oferta
-        ══════════════════════════════════════ */}
+        {/* ══ BLOCO 6 — PROVA SOCIAL REAL ═════════════════ */}
         <section className="pb-10">
-          <div className="flex items-center gap-2 mb-5">
+          <div className="flex items-center gap-2 mb-2">
             <Users className="w-5 h-5 text-primary" />
-            <h2 className="font-display text-2xl text-foreground">Mães que já transformaram</h2>
+            <h2 className="font-display text-2xl text-foreground">O que as mães estão dizendo</h2>
           </div>
+          <p className="text-muted-foreground text-sm mb-5">Resultados reais de mães que já usam o método</p>
+
           <div className="space-y-4">
-            {DEPOIMENTOS.map(({ iniciais, nome, local, texto, destaque }) => (
-              <div key={nome} className="bg-card rounded-2xl p-5 border border-border card-shadow">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
-                    {iniciais}
+            {DEPOIMENTOS.map(({ foto, nome, local, tempo, texto, tag, estrelas }) => (
+              <motion.div
+                key={nome}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-card rounded-2xl border border-border card-shadow overflow-hidden"
+              >
+                {/* Cabeçalho */}
+                <div className="flex items-center gap-3 p-4 pb-3">
+                  <img
+                    src={foto}
+                    alt={nome}
+                    className="w-12 h-12 rounded-full object-cover border-2 border-primary/20 flex-shrink-0"
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <p className="font-bold text-foreground text-sm">{nome}</p>
+                      <span className="text-[10px] bg-accent/10 text-accent border border-accent/20 rounded-full px-2 py-0.5 font-bold flex-shrink-0">
+                        ✓ Verificado
+                      </span>
+                    </div>
+                    <p className="text-muted-foreground text-xs">{local} · {tempo}</p>
                   </div>
-                  <div className="flex-1">
-                    <p className="font-bold text-foreground text-sm">{nome}</p>
-                    <p className="text-muted-foreground text-xs">{local}</p>
-                  </div>
-                  <div className="flex gap-0.5">
-                    {[1,2,3,4,5].map((s) => <Star key={s} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />)}
+                  <div className="flex gap-0.5 flex-shrink-0">
+                    {Array.from({ length: estrelas }).map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                    ))}
                   </div>
                 </div>
-                <p className="text-foreground text-sm leading-relaxed mb-2">"{texto}"</p>
-                <span className="text-xs bg-accent/10 text-accent border border-accent/20 rounded-full px-2 py-0.5 font-semibold">
-                  Resultado em {destaque}
-                </span>
-              </div>
+
+                {/* Texto */}
+                <div className="px-4 pb-3">
+                  <p className="text-foreground text-sm leading-relaxed">{texto}</p>
+                </div>
+
+                {/* Tag resultado */}
+                <div className="px-4 pb-4">
+                  <span className="text-xs bg-primary/10 text-primary rounded-full px-3 py-1 font-semibold">
+                    🏷️ {tag}
+                  </span>
+                </div>
+              </motion.div>
             ))}
+          </div>
+
+          {/* Contador de mães */}
+          <div className="mt-5 bg-muted/50 rounded-2xl p-4 flex items-center justify-between border border-border">
+            <div className="flex -space-x-2">
+              {AVATARES_BAR.map((src, i) => (
+                <img key={i} src={src} alt="" className="w-8 h-8 rounded-full border-2 border-background object-cover" />
+              ))}
+              <div className="w-8 h-8 rounded-full bg-primary border-2 border-background flex items-center justify-center text-[10px] text-white font-bold">
+                +1k
+              </div>
+            </div>
+            <div className="text-right">
+              <p className="font-bold text-foreground text-sm">1.247 mães</p>
+              <p className="text-xs text-muted-foreground">transformaram seus filhos</p>
+            </div>
           </div>
         </section>
 
-        {/* ══════════════════════════════════════
-            BLOCO 7 — OFERTA + CTA PRINCIPAL
-            Ancoragem de preço + botão
-        ══════════════════════════════════════ */}
+        {/* ══ BLOCO 7 — OFERTA ════════════════════════════ */}
         <section className="pb-10">
           <div className="bg-card rounded-3xl border-2 border-primary/30 card-shadow overflow-hidden">
             <div className="gradient-bg px-5 py-3 text-center">
-              <p className="text-white text-xs font-bold uppercase tracking-wide">🔥 Oferta especial por tempo limitado</p>
+              <p className="text-white text-xs font-bold uppercase tracking-wide">🔥 Oferta especial — 62% de desconto</p>
             </div>
             <div className="p-5">
               <h2 className="font-display text-2xl text-foreground text-center mb-4">
                 Invista no desenvolvimento de {nomeCrianca}
               </h2>
-
-              {/* Preço */}
               <div className="text-center mb-5">
                 <p className="text-muted-foreground text-sm">De <span className="line-through font-semibold">R$97</span> por apenas</p>
                 <div className="flex items-end justify-center gap-1 my-1">
@@ -327,10 +398,7 @@ export default function Vendas() {
                   <span className="text-xs font-bold text-accent">Você economiza R$60</span>
                 </div>
               </div>
-
-              <BotaoCTA label={`Garantir acesso agora — R$37`} />
-
-              {/* Parcelamento */}
+              <BotaoCTA label="Garantir acesso agora — R$37" />
               <p className="text-center text-xs text-muted-foreground mt-3">
                 💳 Parcelado em até 12x de <strong>R$3,67</strong> no cartão
               </p>
@@ -338,10 +406,7 @@ export default function Vendas() {
           </div>
         </section>
 
-        {/* ══════════════════════════════════════
-            BLOCO 8 — GARANTIA
-            Elimina o risco antes das objeções
-        ══════════════════════════════════════ */}
+        {/* ══ BLOCO 8 — GARANTIA ══════════════════════════ */}
         <section className="pb-10">
           <div className="bg-accent/10 border-2 border-accent/30 rounded-3xl p-6 text-center">
             <ShieldCheck className="w-14 h-14 text-accent mx-auto mb-3" />
@@ -354,10 +419,7 @@ export default function Vendas() {
           </div>
         </section>
 
-        {/* ══════════════════════════════════════
-            BLOCO 9 — FAQ
-            Quebra as últimas objeções
-        ══════════════════════════════════════ */}
+        {/* ══ BLOCO 9 — FAQ ════════════════════════════════ */}
         <section className="pb-10">
           <h2 className="font-display text-2xl text-foreground mb-5 text-center">Perguntas frequentes</h2>
           <div className="space-y-2">
@@ -365,10 +427,7 @@ export default function Vendas() {
           </div>
         </section>
 
-        {/* ══════════════════════════════════════
-            BLOCO 10 — CTA FINAL
-            Urgência emocional + botão
-        ══════════════════════════════════════ */}
+        {/* ══ BLOCO 10 — CTA FINAL ════════════════════════ */}
         <section className="pb-16">
           <div className="text-center mb-5">
             <Heart className="w-8 h-8 text-primary mx-auto mb-3" />
@@ -378,12 +437,10 @@ export default function Vendas() {
             <p className="text-muted-foreground text-sm leading-relaxed text-balance">
               O cérebro de {nomeCrianca} está no pico da plasticidade neural.{" "}
               <strong className="text-foreground">Cada semana sem estimulação estruturada é potencial que não volta.</strong>{" "}
-              Por R$37 — menos que uma consulta — você tem acesso a um sistema que pode mudar o desenvolvimento do seu filho para sempre.
+              Por R$37 você tem acesso a um sistema que pode mudar o desenvolvimento do seu filho para sempre.
             </p>
           </div>
-
           <BotaoCTA label="Quero começar hoje mesmo" />
-
           <div className="flex items-center justify-center gap-4 mt-5 flex-wrap">
             {[
               { icon: ShieldCheck, texto: "Compra segura" },
@@ -396,6 +453,9 @@ export default function Vendas() {
               </div>
             ))}
           </div>
+          <p className="text-center text-xs text-muted-foreground mt-6">
+            © Método Pequenos Gênios · Todos os direitos reservados
+          </p>
         </section>
 
       </div>

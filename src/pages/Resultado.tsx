@@ -365,7 +365,7 @@ export default function Resultado() {
             className="w-full mb-3 animate-pulse-warm text-base"
             onClick={() => navigate("/vendas", { state: { nomeMae, nomeCrianca, idadeCrianca, resultado } })}
           >
-            Quero o Método Mente Ativa
+            Quero o Método Pequenos Gênios
             <ArrowRight className="w-5 h-5" />
           </Button>
 

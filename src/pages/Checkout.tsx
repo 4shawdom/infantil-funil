@@ -54,7 +54,7 @@ export default function Checkout() {
             <div className="w-7 h-7 rounded-xl gradient-bg flex items-center justify-center">
               <span className="text-white text-xs font-bold">M</span>
             </div>
-            <span className="font-display font-extrabold text-foreground text-sm">Método Mente Ativa</span>
+            <span className="font-display font-extrabold text-foreground text-sm">Método Pequenos Gênios</span>
           </div>
           <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <Lock className="w-3.5 h-3.5 text-accent" />
@@ -93,7 +93,7 @@ export default function Checkout() {
                   <span className="text-xl">🧠</span>
                 </div>
                 <div>
-                  <p className="font-bold text-foreground text-sm">Método Mente Ativa 15 Minutos</p>
+                  <p className="font-bold text-foreground text-sm">Método Pequenos Gênios 15 Minutos</p>
                   <p className="text-muted-foreground text-xs">Sistema completo + 80 atividades + acesso vitalício</p>
                   <div className="flex flex-wrap gap-1 mt-1.5">
                     {["Diagnóstico", "Rotina diária", "5 níveis", "Biblioteca"].map((tag) => (
@@ -304,7 +304,7 @@ export default function Checkout() {
 
         {/* Rodapé */}
         <p className="text-center text-xs text-muted-foreground pb-4">
-          © Método Mente Ativa · Todos os direitos reservados
+          © Método Pequenos Gênios · Todos os direitos reservados
         </p>
       </div>
     </div>
