@@ -363,7 +363,7 @@ export default function Resultado() {
             variant="cta"
             size="xl"
             className="w-full mb-3 animate-pulse-warm text-base"
-            onClick={() => navigate("/checkout", { state: { nomeMae, nomeCrianca, idadeCrianca } })}
+            onClick={() => navigate("/vendas", { state: { nomeMae, nomeCrianca, idadeCrianca, resultado } })}
           >
             Quero o Método Mente Ativa
             <ArrowRight className="w-5 h-5" />
