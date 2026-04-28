@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import { NotificacaoMembro } from "@/components/NotificacaoMembro";
 import {
   CheckCircle2, Star, ShieldCheck, Clock,
   ArrowRight, Users, Heart, ChevronDown, ChevronUp, Lock, AlertTriangle, Zap
@@ -121,6 +122,7 @@ export default function Vendas() {
 
   return (
     <div className="min-h-screen bg-background">
+      <NotificacaoMembro />
       <div className="max-w-2xl mx-auto px-4">
 
         {/* ══ BLOCO 1 — HERO ══════════════════════════════ */}
