@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   CheckCircle2, Star, ShieldCheck, Clock, Brain, ArrowRight,
@@ -94,10 +94,9 @@ function FaqItem({ q, a }: { q: string; a: string }) {
   );
 }
 
-function CTABox({ label = "Quero o Método Mente Ativa" }: { label?: string }) {
+function CTABox({ label = "Quero o Método Mente Ativa", onIrCheckout }: { label?: string; onIrCheckout: () => void }) {
   return (
     <div className="bg-card rounded-3xl p-6 card-shadow border-2 border-primary/30 text-center">
-      {/* Preço */}
       <div className="mb-4">
         <p className="text-muted-foreground text-sm line-through">De R$97</p>
         <div className="flex items-end justify-center gap-1">
@@ -108,7 +107,6 @@ function CTABox({ label = "Quero o Método Mente Ativa" }: { label?: string }) {
         <Badge variant="default" className="mt-1 text-xs">🔥 62% de desconto — por tempo limitado</Badge>
       </div>
 
-      {/* O que inclui */}
       <div className="text-left bg-muted/50 rounded-2xl p-4 mb-5 space-y-2">
         {[
           "✅ Sistema completo com + de 80 atividades",
@@ -122,18 +120,7 @@ function CTABox({ label = "Quero o Método Mente Ativa" }: { label?: string }) {
         ))}
       </div>
 
-      {/* Order bumps */}
-      <div className="border-2 border-dashed border-secondary/40 rounded-2xl p-4 mb-5 text-left bg-secondary/5">
-        <p className="text-xs font-bold text-secondary uppercase tracking-wide mb-2">⚡ Adicione por +R$17</p>
-        <p className="font-bold text-foreground text-sm mb-1">Pack Especial TDAH/TEA</p>
-        <p className="text-xs text-muted-foreground mb-3">20 atividades extras adaptadas para crianças neurodivergentes, com orientações específicas para lidar com hipersensibilidade e resistência.</p>
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" className="rounded w-4 h-4 accent-secondary" />
-          <span className="text-sm font-semibold text-foreground">Sim, quero o Pack TDAH/TEA</span>
-        </label>
-      </div>
-
-      <Button variant="cta" size="xl" className="w-full mb-3 text-base animate-pulse-warm">
+      <Button variant="cta" size="xl" className="w-full mb-3 text-base animate-pulse-warm" onClick={onIrCheckout}>
         {label}
         <ArrowRight className="w-5 h-5" />
       </Button>
@@ -149,9 +136,14 @@ function CTABox({ label = "Quero o Método Mente Ativa" }: { label?: string }) {
 
 export default function Vendas() {
   const location = useLocation();
+  const navigate = useNavigate();
   const state = location.state as VendasState | null;
   const nomeCrianca = state?.nomeCrianca || "seu filho(a)";
   const nomeMae = state?.nomeMae || "Você";
+
+  function irParaCheckout() {
+    navigate("/checkout", { state: { nomeMae: state?.nomeMae, nomeCrianca: state?.nomeCrianca, idadeCrianca: state?.idadeCrianca } });
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -172,7 +164,7 @@ export default function Vendas() {
               Mesmo sem saber pedagogia. Mesmo com uma rotina corrida.
               Mesmo se outros métodos já falharam antes.
             </p>
-            <CTABox label={`Quero o plano de ${nomeCrianca}`} />
+            <CTABox label={`Quero o plano de ${nomeCrianca}`} onIrCheckout={irParaCheckout} />
           </motion.div>
         </section>
 
@@ -431,7 +423,7 @@ export default function Vendas() {
               O cérebro de {nomeCrianca} está no seu pico de plasticidade <strong className="text-foreground">agora</strong>.
             </p>
           </div>
-          <CTABox label="Quero começar hoje mesmo" />
+          <CTABox label="Quero começar hoje mesmo" onIrCheckout={irParaCheckout} />
         </section>
       </div>
     </div>
