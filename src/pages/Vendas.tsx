@@ -11,24 +11,15 @@ function irParaCakto() { window.location.href = LINK_CAKTO; }
 
 interface VendasState { nomeMae?: string; nomeCrianca?: string; idadeCrianca?: string; }
 
-// Fotos reais do Unsplash
-const FOTO = (id: string, w = 96, h = 96) =>
-  `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&fit=crop&auto=format&q=80`;
+// Fotos reais das mães
+const FOTO_HERO = "/fotos/hero.png";
+const FOTO_MAE1 = "/fotos/mae1.jpg";
+const FOTO_MAE2 = "/fotos/mae2.jpg";
+const FOTO_MAE3 = "/fotos/mae3.jpg";
+const FOTO_MAE4 = "/fotos/mae4.jpg";
+const FOTO_MAE5 = "/fotos/mae5.jpg";
 
-const FOTO_HERO = FOTO("1583468982228-19f19164aee2", 800, 500);
-const FOTO_MAE1 = FOTO("NBt3j_IAJJ4");
-const FOTO_MAE2 = FOTO("IF9TK5Uy-KI");
-const FOTO_MAE3 = FOTO("Ll9YOG20UFI");
-const FOTO_MAE4 = FOTO("1AhGNGKuhR0");
-const FOTO_MAE5 = FOTO("YNUftQBOSUg");
-
-const AVATARES_BAR = [
-  FOTO("NBt3j_IAJJ4", 40, 40),
-  FOTO("IF9TK5Uy-KI", 40, 40),
-  FOTO("Ll9YOG20UFI", 40, 40),
-  FOTO("1AhGNGKuhR0", 40, 40),
-  FOTO("YNUftQBOSUg", 40, 40),
-];
+const AVATARES_BAR = [FOTO_MAE1, FOTO_MAE2, FOTO_MAE3, FOTO_MAE4, FOTO_MAE5];
 
 // ─── CTA ──────────────────────────────────────────────
 function BotaoCTA({ label = "Quero o Método Pequenos Gênios", sub }: { label?: string; sub?: string }) {
@@ -390,17 +381,17 @@ export default function Vendas() {
                 <p className="text-muted-foreground text-sm">De <span className="line-through font-semibold">R$97</span> por apenas</p>
                 <div className="flex items-end justify-center gap-1 my-1">
                   <span className="text-muted-foreground text-2xl font-bold">R$</span>
-                  <span className="font-display text-6xl text-foreground leading-none">37</span>
+                  <span className="font-display text-6xl text-foreground leading-none">27</span>
                 </div>
                 <p className="text-muted-foreground text-sm">pagamento único · acesso vitalício</p>
                 <div className="inline-flex items-center gap-1.5 bg-accent/10 border border-accent/20 rounded-full px-3 py-1 mt-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-accent" />
-                  <span className="text-xs font-bold text-accent">Você economiza R$60</span>
+                  <span className="text-xs font-bold text-accent">Você economiza R$70</span>
                 </div>
               </div>
-              <BotaoCTA label="Garantir acesso agora — R$37" />
+              <BotaoCTA label="Garantir acesso agora — R$27" />
               <p className="text-center text-xs text-muted-foreground mt-3">
-                💳 Parcelado em até 12x de <strong>R$3,67</strong> no cartão
+                💳 Parcelado em até 12x de <strong>R$2,82</strong> no cartão
               </p>
             </div>
           </div>
@@ -437,7 +428,7 @@ export default function Vendas() {
             <p className="text-muted-foreground text-sm leading-relaxed text-balance">
               O cérebro de {nomeCrianca} está no pico da plasticidade neural.{" "}
               <strong className="text-foreground">Cada semana sem estimulação estruturada é potencial que não volta.</strong>{" "}
-              Por R$37 você tem acesso a um sistema que pode mudar o desenvolvimento do seu filho para sempre.
+              Por R$27 você tem acesso a um sistema que pode mudar o desenvolvimento do seu filho para sempre.
             </p>
           </div>
           <BotaoCTA label="Quero começar hoje mesmo" />
