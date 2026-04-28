@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 35 100% 97%;
+    --foreground: 20 25% 15%;
+
+    --card: 35 60% 95%;
+    --card-foreground: 20 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 25% 15%;
+
+    --primary: 22 90% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 265 75% 62%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 35 30% 92%;
+    --muted-foreground: 20 15% 50%;
+
+    --accent: 142 65% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 35 20% 88%;
+    --input: 35 20% 88%;
+    --ring: 22 90% 58%;
+
+    --radius: 1rem;
+
+    --gradient-primary: linear-gradient(135deg, hsl(22, 90%, 58%), hsl(38, 95%, 55%));
+    --gradient-hero: linear-gradient(180deg, hsl(35, 100%, 97%) 0%, hsl(35, 80%, 93%) 100%);
+    --gradient-cta: linear-gradient(135deg, hsl(22, 90%, 58%) 0%, hsl(38, 95%, 55%) 100%);
+    --shadow-card: 0 8px 32px hsl(22, 60%, 40%, 0.12);
+    --shadow-glow: 0 0 40px hsl(22, 90%, 58%, 0.2);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .gradient-bg {
+    background-image: var(--gradient-primary);
+  }
+
+  .gradient-cta {
+    background-image: var(--gradient-cta);
+  }
+
+  .card-shadow {
+    box-shadow: var(--shadow-card);
+  }
+
+  .glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .option-card {
+    @apply border-2 border-border rounded-2xl p-4 cursor-pointer transition-all duration-200 bg-card;
+  }
+
+  .option-card:hover {
+    @apply border-primary/50 bg-primary/5;
+  }
+
+  .option-card.selected {
+    @apply border-primary bg-primary/10;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
