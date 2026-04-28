@@ -7,8 +7,8 @@ import {
 } from "lucide-react";
 
 // ⚠️ Substitua pelos seus links do Cakto
-const LINK_PRINCIPAL = "https://pay.cakto.com.br/3fycrna_866544";
-const LINK_COMBO = "https://pay.cakto.com.br/bipthqh";
+const LINK_PRINCIPAL = "https://pay.cakto.com.br/SEU_LINK_PRINCIPAL";
+const LINK_COMBO = "https://pay.cakto.com.br/SEU_LINK_COMBO";
 
 interface CheckoutState {
   nomeMae?: string;
