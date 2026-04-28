@@ -1,8 +1,141 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
-import { ArrowRight, AlertCircle, TrendingUp, Star, Target, Lightbulb, Lock } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { ArrowRight, AlertCircle, TrendingUp, Star, Target, Lightbulb, Lock, Brain, Search, Sparkles, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+
+const ETAPAS = [
+  { icon: Search, texto: "Analisando suas respostas...", dur: 1400 },
+  { icon: Brain, texto: "Identificando o perfil de desenvolvimento...", dur: 1400 },
+  { icon: Sparkles, texto: "Selecionando as melhores atividades...", dur: 1400 },
+  { icon: CheckCircle2, texto: "Montando o plano personalizado!", dur: 800 },
+];
+
+function LoadingDiagnostico({ nomeCrianca }: { nomeCrianca: string }) {
+  const [etapaAtual, setEtapaAtual] = useState(0);
+  const [progresso, setProgresso] = useState(0);
+
+  useEffect(() => {
+    let etapa = 0;
+    let prog = 0;
+    const total = ETAPAS.reduce((a, e) => a + e.dur, 0);
+    let acumulado = 0;
+
+    const intervaloProg = setInterval(() => {
+      prog = Math.min(prog + 1, 99);
+      setProgresso(prog);
+    }, total / 100);
+
+    function avancar() {
+      if (etapa >= ETAPAS.length - 1) {
+        clearInterval(intervaloProg);
+        setProgresso(100);
+        return;
+      }
+      acumulado += ETAPAS[etapa].dur;
+      etapa += 1;
+      setEtapaAtual(etapa);
+      setTimeout(avancar, ETAPAS[etapa].dur);
+    }
+
+    const t = setTimeout(avancar, ETAPAS[0].dur);
+    return () => { clearTimeout(t); clearInterval(intervaloProg); };
+  }, []);
+
+  const Icon = ETAPAS[etapaAtual].icon;
+
+  return (
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="w-full max-w-sm text-center"
+      >
+        {/* Ícone animado */}
+        <div className="relative w-24 h-24 mx-auto mb-8">
+          <div className="absolute inset-0 rounded-full gradient-bg opacity-20 animate-ping" />
+          <div className="absolute inset-2 rounded-full gradient-bg opacity-30 animate-pulse" />
+          <div className="relative w-24 h-24 rounded-full gradient-bg flex items-center justify-center shadow-xl">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={etapaAtual}
+                initial={{ opacity: 0, scale: 0.5, rotate: -20 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                exit={{ opacity: 0, scale: 0.5, rotate: 20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Icon className="w-10 h-10 text-white" />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Título */}
+        <h2 className="font-display text-2xl text-foreground mb-2">
+          Procurando as melhores atividades para{" "}
+          <span className="gradient-text">{nomeCrianca}</span>...
+        </h2>
+
+        {/* Etapa atual */}
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={etapaAtual}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3 }}
+            className="text-muted-foreground text-sm mb-8"
+          >
+            {ETAPAS[etapaAtual].texto}
+          </motion.p>
+        </AnimatePresence>
+
+        {/* Barra de progresso */}
+        <div className="w-full bg-muted rounded-full h-3 mb-4 overflow-hidden">
+          <motion.div
+            className="h-full rounded-full gradient-bg"
+            animate={{ width: `${progresso}%` }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+          />
+        </div>
+        <p className="text-xs text-muted-foreground font-semibold">{progresso}%</p>
+
+        {/* Etapas concluídas */}
+        <div className="mt-8 space-y-2">
+          {ETAPAS.map((etapa, i) => {
+            const E = etapa.icon;
+            const concluida = i < etapaAtual;
+            const atual = i === etapaAtual;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: i <= etapaAtual ? 1 : 0.3, x: 0 }}
+                transition={{ delay: i * 0.1 }}
+                className="flex items-center gap-3 text-left"
+              >
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-all ${
+                  concluida ? "bg-accent" : atual ? "gradient-bg animate-pulse" : "bg-muted"
+                }`}>
+                  {concluida
+                    ? <CheckCircle2 className="w-3.5 h-3.5 text-white" />
+                    : <E className="w-3.5 h-3.5 text-white" />
+                  }
+                </div>
+                <span className={`text-xs font-medium ${
+                  concluida ? "text-accent line-through" : atual ? "text-foreground" : "text-muted-foreground"
+                }`}>
+                  {etapa.texto}
+                </span>
+              </motion.div>
+            );
+          })}
+        </div>
+      </motion.div>
+    </div>
+  );
+}
 
 interface ResultadoState {
   nomeMae: string;
@@ -63,14 +196,26 @@ const DIFICULDADE_CONFIG: Record<string, { label: string; emoji: string; dica: s
   },
 };
 
+const LOADING_TOTAL = ETAPAS.reduce((a, e) => a + e.dur, 0) + 300;
+
 export default function Resultado() {
   const navigate = useNavigate();
   const location = useLocation();
   const state = location.state as ResultadoState | null;
+  const [carregando, setCarregando] = useState(true);
+
+  useEffect(() => {
+    const t = setTimeout(() => setCarregando(false), LOADING_TOTAL);
+    return () => clearTimeout(t);
+  }, []);
 
   if (!state) {
     navigate("/");
     return null;
+  }
+
+  if (carregando) {
+    return <LoadingDiagnostico nomeCrianca={state.nomeCrianca} />;
   }
 
   const { nomeMae, nomeCrianca, idadeCrianca, resultado } = state;
