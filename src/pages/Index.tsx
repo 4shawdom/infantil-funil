@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Brain, Star, Clock, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const IDADES = ["3 anos", "4 anos", "5 anos", "6 anos", "7 anos", "8 anos"];
+const IDADES = ["2 anos", "3 anos", "4 anos", "5 anos", "6 anos", "7 anos", "8 anos", "9 anos", "10 anos", "11 anos", "12 anos"];
 
 export default function Index() {
   const navigate = useNavigate();
