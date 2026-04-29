@@ -269,30 +269,87 @@ export default function Vendas() {
 
         {/* ══ BLOCO 5 — O QUE INCLUI ══════════════════════ */}
         <section className="pb-10">
-          <h2 className="font-display text-2xl text-foreground mb-5 text-center">Tudo que você recebe</h2>
+          <h2 className="font-display text-2xl text-foreground mb-2 text-center">Tudo que você recebe</h2>
+          <p className="text-muted-foreground text-sm text-center mb-5">Cada item tem um valor real. Veja o que você está levando:</p>
+
           <div className="bg-card rounded-3xl border-2 border-primary/20 overflow-hidden card-shadow">
             <div className="gradient-bg p-4 text-center">
               <p className="text-white font-bold text-sm">📦 Método Pequenos Gênios — Acesso Completo</p>
             </div>
-            <div className="p-4 space-y-3">
+
+            <div className="p-4 space-y-0 divide-y divide-border">
               {[
-                { emoji: "🧠", item: "Sistema diagnóstico personalizado", detalhe: "Rotina montada para o perfil do seu filho" },
-                { emoji: "📅", item: "Rotina diária de 15 minutos", detalhe: "3 atividades por dia com passo a passo completo" },
-                { emoji: "📚", item: "Biblioteca com +80 atividades", detalhe: "Filtradas por habilidade e nível" },
-                { emoji: "⭐", item: "Sistema de 5 níveis de evolução", detalhe: "Progresso visível que engaja mãe e filho" },
-                { emoji: "🎯", item: "Foco em atenção, linguagem e coordenação", detalhe: "As 3 áreas mais críticas do desenvolvimento" },
-                { emoji: "📱", item: "Web app — sem instalar nada", detalhe: "Acessa pelo celular, tablet ou computador" },
-                { emoji: "♾️", item: "Acesso vitalício + atualizações grátis", detalhe: "Funciona para os próximos filhos também" },
-              ].map(({ emoji, item, detalhe }) => (
-                <div key={item} className="flex items-start gap-3">
-                  <span className="text-xl flex-shrink-0">{emoji}</span>
-                  <div className="flex-1">
-                    <p className="font-semibold text-foreground text-sm">{item}</p>
-                    <p className="text-muted-foreground text-xs">{detalhe}</p>
+                {
+                  emoji: "🧠",
+                  item: "Diagnóstico personalizado do seu filho",
+                  detalhe: "Identifica exatamente o que trabalhar — sem chute, sem genérico",
+                  valor: 47,
+                },
+                {
+                  emoji: "📅",
+                  item: "Rotina diária guiada de 15 minutos",
+                  detalhe: "3 atividades por dia com passo a passo completo — sem improviso",
+                  valor: 67,
+                },
+                {
+                  emoji: "📚",
+                  item: "Biblioteca com +80 atividades práticas",
+                  detalhe: "Selecionadas por especialistas em desenvolvimento infantil",
+                  valor: 57,
+                },
+                {
+                  emoji: "⭐",
+                  item: "Sistema de 5 níveis de evolução",
+                  detalhe: "Seu filho avança no ritmo dele — e você vê o progresso acontecer",
+                  valor: 37,
+                },
+                {
+                  emoji: "🎯",
+                  item: "Foco em atenção, linguagem e coordenação",
+                  detalhe: "As 3 áreas mais críticas dos 2 aos 12 anos — num só lugar",
+                  valor: 47,
+                },
+                {
+                  emoji: "📱",
+                  item: "Web app — acesso pelo celular, agora",
+                  detalhe: "Sem instalar nada. Funciona em qualquer dispositivo",
+                  valor: 27,
+                },
+                {
+                  emoji: "♾️",
+                  item: "Acesso vitalício + atualizações grátis",
+                  detalhe: "Paga uma vez e usa para sempre — até para os próximos filhos",
+                  valor: 47,
+                },
+              ].map(({ emoji, item, detalhe, valor }) => (
+                <div key={item} className="flex items-start gap-3 py-3.5">
+                  <span className="text-xl flex-shrink-0 mt-0.5">{emoji}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-bold text-foreground text-sm">{item}</p>
+                    <p className="text-muted-foreground text-xs mt-0.5 leading-relaxed">{detalhe}</p>
                   </div>
-                  <CheckCircle2 className="w-4 h-4 text-accent ml-auto flex-shrink-0 mt-0.5" />
+                  <div className="flex-shrink-0 text-right ml-2">
+                    <p className="text-xs text-muted-foreground line-through">R${valor}</p>
+                    <CheckCircle2 className="w-4 h-4 text-accent ml-auto mt-0.5" />
+                  </div>
                 </div>
               ))}
+            </div>
+
+            {/* Ancoragem de preço */}
+            <div className="mx-4 mb-4 rounded-2xl overflow-hidden border-2 border-primary/20">
+              <div className="bg-muted/60 px-4 py-3 flex items-center justify-between">
+                <p className="text-sm font-bold text-muted-foreground">Valor total dos itens:</p>
+                <p className="text-lg font-extrabold text-muted-foreground line-through">R$329</p>
+              </div>
+              <div className="gradient-bg px-4 py-4 text-center">
+                <p className="text-white/90 text-xs font-medium mb-1">Hoje, para você, apenas:</p>
+                <div className="flex items-end justify-center gap-1 mb-1">
+                  <span className="text-white text-2xl font-bold">R$</span>
+                  <span className="text-white font-display text-6xl leading-none">27</span>
+                </div>
+                <p className="text-white/80 text-xs">pagamento único · acesso vitalício · garantia de 7 dias</p>
+              </div>
             </div>
           </div>
         </section>
