@@ -146,26 +146,6 @@ export default function Index() {
         </motion.div>
       </section>
 
-      {/* Prova social rápida */}
-      <section className="px-4 pb-12 max-w-2xl mx-auto">
-        <div className="grid gap-3">
-          {[
-            { nome: "Camila S.", texto: "Em 3 semanas, meu filho já consegue se concentrar por muito mais tempo!" },
-            { nome: "Fernanda R.", texto: "Não acreditei que 15 minutos fossem fazer tanta diferença. Incrível!" },
-            { nome: "Priscila M.", texto: "Minha filha tem TEA e esse método foi um divisor de águas pra nós." },
-          ].map(({ nome, texto }) => (
-            <div key={nome} className="bg-card rounded-2xl p-4 card-shadow border border-border">
-              <div className="flex gap-1 mb-1">
-                {[1, 2, 3, 4, 5].map((s) => (
-                  <Star key={s} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-              <p className="text-sm text-foreground mb-1">"{texto}"</p>
-              <p className="text-xs text-muted-foreground font-semibold">— {nome}</p>
-            </div>
-          ))}
-        </div>
-      </section>
     </div>
   );
 }
