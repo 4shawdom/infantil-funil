@@ -119,55 +119,31 @@ const PERGUNTAS: Pergunta[] = [
 
 const IDADES = ["2 anos","3 anos","4 anos","5 anos","6 anos","7 anos","8 anos","9 anos","10 anos","11 anos","12 anos"];
 
-function TelaInicio({ onComecar }: { onComecar: (nomeMae: string, nomeCrianca: string, idadeCrianca: string) => void }) {
-  const [nomeMae, setNomeMae] = useState("");
-  const [nomeCrianca, setNomeCrianca] = useState("");
+function TelaIdade({ onComecar }: { onComecar: (idadeCrianca: string) => void }) {
   const [idadeCrianca, setIdadeCrianca] = useState("");
-  const [erro, setErro] = useState("");
-
-  function handleSubmit() {
-    if (!nomeMae.trim() || !nomeCrianca.trim() || !idadeCrianca) {
-      setErro("Preencha todos os campos para continuar.");
-      return;
-    }
-    onComecar(nomeMae.trim(), nomeCrianca.trim(), idadeCrianca);
-  }
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4">
       <div className="w-full max-w-sm">
-        <div className="text-center mb-6">
-          <span className="text-4xl block mb-2">🧠</span>
-          <h1 className="font-display text-2xl text-foreground mb-1">Vamos começar!</h1>
-          <p className="text-muted-foreground text-sm">Preencha para personalizar o diagnóstico</p>
+        <div className="text-center mb-8">
+          <span className="text-5xl block mb-3">🧒</span>
+          <h1 className="font-display text-2xl text-foreground mb-2">Qual a idade do seu filho(a)?</h1>
+          <p className="text-muted-foreground text-sm">Isso ajuda a personalizar o diagnóstico</p>
         </div>
-        <div className="bg-card rounded-3xl p-5 card-shadow border border-border space-y-4">
-          <div>
-            <label className="text-sm font-semibold text-foreground mb-1 block">Seu nome</label>
-            <input type="text" placeholder="Ex: Ana Paula" value={nomeMae} onChange={e => setNomeMae(e.target.value)}
-              className="w-full border-2 border-border rounded-xl px-4 py-3 text-foreground bg-background focus:outline-none focus:border-primary transition-colors text-sm" />
-          </div>
-          <div>
-            <label className="text-sm font-semibold text-foreground mb-1 block">Nome do seu filho(a)</label>
-            <input type="text" placeholder="Ex: Miguel" value={nomeCrianca} onChange={e => setNomeCrianca(e.target.value)}
-              className="w-full border-2 border-border rounded-xl px-4 py-3 text-foreground bg-background focus:outline-none focus:border-primary transition-colors text-sm" />
-          </div>
-          <div>
-            <label className="text-sm font-semibold text-foreground mb-1 block">Idade do seu filho(a)</label>
-            <div className="grid grid-cols-4 gap-2">
-              {IDADES.map(idade => (
-                <button key={idade} onClick={() => setIdadeCrianca(idade)}
-                  className={`border-2 rounded-xl py-2 text-xs font-bold transition-all ${idadeCrianca === idade ? "border-primary bg-primary/10 text-primary" : "border-border bg-background text-muted-foreground hover:border-primary/50"}`}>
-                  {idade}
-                </button>
-              ))}
-            </div>
-          </div>
-          {erro && <p className="text-destructive text-sm text-center">{erro}</p>}
-          <button onClick={handleSubmit}
-            className="w-full gradient-cta text-white font-extrabold rounded-2xl py-4 text-base hover:opacity-95 transition-all">
-            Iniciar diagnóstico →
-          </button>
+        <div className="grid grid-cols-3 gap-3 mb-6">
+          {IDADES.map(idade => (
+            <button
+              key={idade}
+              onClick={() => { setIdadeCrianca(idade); setTimeout(() => onComecar(idade), 200); }}
+              className={`border-2 rounded-2xl py-4 text-sm font-bold transition-all ${
+                idadeCrianca === idade
+                  ? "border-primary bg-primary/10 text-primary scale-95"
+                  : "border-border bg-card text-foreground hover:border-primary/50 hover:bg-primary/5"
+              }`}
+            >
+              {idade}
+            </button>
+          ))}
         </div>
       </div>
     </div>
@@ -177,20 +153,19 @@ function TelaInicio({ onComecar }: { onComecar: (nomeMae: string, nomeCrianca: s
 export default function Quiz() {
   const navigate = useNavigate();
   const location = useLocation();
-  const stateExterno = location.state as { nomeMae: string; nomeCrianca: string; idadeCrianca: string } | null;
-
-  const [dadosIniciais, setDadosIniciais] = useState<{ nomeMae: string; nomeCrianca: string; idadeCrianca: string } | null>(stateExterno);
+  const [idadeCrianca, setIdadeCrianca] = useState<string | null>(null);
   const [atual, setAtual] = useState(0);
   const [respostas, setRespostas] = useState<string[]>([]);
   const [selecionado, setSelecionado] = useState<string | null>(null);
   const [direction, setDirection] = useState(1);
   const [bloqueado, setBloqueado] = useState(false);
 
-  if (!dadosIniciais) {
-    return <TelaInicio onComecar={(nomeMae, nomeCrianca, idadeCrianca) => setDadosIniciais({ nomeMae, nomeCrianca, idadeCrianca })} />;
+  if (!idadeCrianca) {
+    return <TelaIdade onComecar={(idade) => setIdadeCrianca(idade)} />;
   }
 
-  const { nomeMae, nomeCrianca, idadeCrianca } = dadosIniciais;
+  const nomeMae = "";
+  const nomeCrianca = "seu filho(a)";
   const pergunta = PERGUNTAS[atual];
   const progresso = (atual / PERGUNTAS.length) * 100;
 
@@ -267,7 +242,7 @@ export default function Quiz() {
           </div>
         </div>
         <p className="text-xs text-muted-foreground text-center">
-          Diagnóstico de <strong>{nomeCrianca}</strong> — {idadeCrianca}
+          Diagnóstico personalizado — <strong>{idadeCrianca}</strong>
         </p>
       </header>
 
@@ -283,11 +258,12 @@ export default function Quiz() {
           >
             {/* Imagem da pergunta */}
             {pergunta.imagem && (
-              <div className="rounded-3xl overflow-hidden mb-4 border border-border card-shadow">
+              <div className="rounded-3xl overflow-hidden mb-4 border border-border card-shadow bg-muted">
                 <img
                   src={pergunta.imagem}
                   alt=""
-                  className="w-full h-48 object-cover object-top"
+                  className="w-full h-56 object-cover object-center"
+                  style={{ imageRendering: "auto" }}
                 />
               </div>
             )}
