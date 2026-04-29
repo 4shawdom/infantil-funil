@@ -45,7 +45,7 @@ function BotaoCTA({ label = "Quero o Método Pequenos Gênios", sub }: { label?:
 const FAQS = [
   { q: "Funciona para crianças com TDAH ou TEA?", a: "Sim! O método foi desenvolvido para ser inclusivo. As atividades são curtas, sensorialmente equilibradas e adaptáveis para crianças neurodivergentes." },
   { q: "Preciso ter conhecimento pedagógico?", a: "Não! O passo a passo é tão claro que qualquer mãe consegue aplicar, independentemente de formação." },
-  { q: "Meu filho vai querer participar?", a: "As atividades são lúdicas e interativas, desenvolvidas para engajar crianças de 2 a 12 anos. A maioria das mães relata que os filhos pedem para fazer." },
+  { q: "Meu filho vai querer participar?", a: "As atividades são lúdicas e interativas, desenvolvidas para engajar crianças com atraso cognitivo em diferentes fases. A maioria das mães relata que os filhos pedem para fazer." },
   { q: "Em quanto tempo vejo resultado?", a: "A maioria das mães nota diferença nas primeiras duas semanas. Resultados consistentes aparecem entre quatro e oito semanas de uso regular." },
   { q: "Como funciona a garantia de 7 dias?", a: "Se por qualquer motivo você não ficar satisfeita, basta enviar uma mensagem e devolvemos 100% do valor. Sem burocracia e sem perguntas." },
   { q: "É um aplicativo ou material físico?", a: "É um web app que pode ser acessado pelo celular, tablet ou computador. Não é necessário instalar nada. O acesso é liberado imediatamente após a compra." },
@@ -138,7 +138,7 @@ export default function Vendas() {
 
             {/* Headline */}
             <h1 className="font-display text-3xl md:text-4xl text-foreground leading-tight text-center mb-3 text-balance">
-              Seu filho pode ter mais foco, falar melhor e se coordenar em{" "}
+              Seu filho pode superar o atraso cognitivo em{" "}
               <span className="gradient-text">15 minutos por dia</span>
             </h1>
             <p className="text-muted-foreground text-lg text-center mb-5 text-balance">
@@ -306,7 +306,7 @@ export default function Vendas() {
                 {
                   emoji: "🎯",
                   item: "Foco em atenção, linguagem e coordenação",
-                  detalhe: "As três áreas mais críticas dos 2 aos 12 anos, reunidas em um só sistema.",
+                  detalhe: "As três áreas mais impactadas pelo atraso cognitivo, reunidas em um só sistema.",
                   valor: 47,
                 },
                 {

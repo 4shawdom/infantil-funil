@@ -119,10 +119,15 @@ const PERGUNTAS: Pergunta[] = [
   },
 ];
 
-const IDADES = ["2 anos","3 anos","4 anos","5 anos","6 anos","7 anos","8 anos","9 anos","10 anos","11 anos","12 anos"];
-
 function TelaIdade({ onComecar }: { onComecar: (idadeCrianca: string) => void }) {
-  const [idadeCrianca, setIdadeCrianca] = useState("");
+  const [idade, setIdade] = useState("");
+  const [erro, setErro] = useState("");
+
+  function handleContinuar(e: React.FormEvent) {
+    e.preventDefault();
+    if (!idade.trim()) { setErro("Informe a idade do seu filho(a)."); return; }
+    onComecar(idade.trim());
+  }
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4">
@@ -132,21 +137,23 @@ function TelaIdade({ onComecar }: { onComecar: (idadeCrianca: string) => void })
           <h1 className="font-display text-2xl text-foreground mb-2">Qual a idade do seu filho(a)?</h1>
           <p className="text-muted-foreground text-sm">Isso ajuda a personalizar o diagnóstico</p>
         </div>
-        <div className="grid grid-cols-3 gap-3 mb-6">
-          {IDADES.map(idade => (
-            <button
-              key={idade}
-              onClick={() => { setIdadeCrianca(idade); setTimeout(() => onComecar(idade), 200); }}
-              className={`border-2 rounded-2xl py-4 text-sm font-bold transition-all ${
-                idadeCrianca === idade
-                  ? "border-primary bg-primary/10 text-primary scale-95"
-                  : "border-border bg-card text-foreground hover:border-primary/50 hover:bg-primary/5"
-              }`}
-            >
-              {idade}
-            </button>
-          ))}
-        </div>
+        <form onSubmit={handleContinuar} className="space-y-4">
+          <input
+            type="text"
+            placeholder="Ex: 5 anos, 8 anos, 12 anos..."
+            value={idade}
+            onChange={(e) => { setIdade(e.target.value); setErro(""); }}
+            autoFocus
+            className="w-full border-2 border-border rounded-2xl px-5 py-4 text-foreground bg-card focus:outline-none focus:border-primary transition-colors text-sm text-center font-semibold"
+          />
+          {erro && <p className="text-destructive text-sm text-center">{erro}</p>}
+          <button
+            type="submit"
+            className="w-full gradient-cta text-white font-extrabold rounded-2xl py-4 hover:opacity-95 transition-opacity"
+          >
+            Continuar
+          </button>
+        </form>
       </div>
     </div>
   );

@@ -91,9 +91,9 @@ export default function Index() {
             <h2 className="font-display text-lg text-foreground mb-3 text-center">Para quem é esse método?</h2>
             <div className="space-y-2">
               {[
-                "Mães de crianças de 2 a 12 anos",
+                "Mães com filhos que apresentam atraso cognitivo",
                 "Crianças com dificuldade de foco ou atenção",
-                "Casos de TDAH, TEA leve ou atraso na fala",
+                "Casos de TDAH, TEA ou atraso na fala e no aprendizado",
                 "Mães sem tempo: a rotina cabe em 15 minutos",
                 "Quem não tem formação pedagógica",
               ].map((item) => (
