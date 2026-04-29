@@ -1,30 +1,32 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowLeft, Brain } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowLeft, Brain } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
 interface Pergunta {
   id: number;
   texto: string;
   subtexto?: string;
+  imagem?: string;
   opcoes: { label: string; valor: string; peso?: Record<string, number> }[];
 }
 
 const PERGUNTAS: Pergunta[] = [
   {
     id: 1,
+    imagem: "/fotos/quiz/q1.png",
     texto: "Seu filho(a) consegue manter o foco em uma atividade por mais de 5 minutos?",
     subtexto: "Considere brincadeiras, desenhos, histórias…",
     opcoes: [
       { label: "🚫 Raramente — desiste muito rápido", valor: "muito_dificil", peso: { atencao: 3 } },
-      { label: "😕 Às vezes — depende muito da atividade", valor: "moderado", peso: { atencao: 1 } },
+      { label: "😕 Às vezes — depende da atividade", valor: "moderado", peso: { atencao: 1 } },
       { label: "✅ Sim, normalmente consegue", valor: "ok", peso: { atencao: 0 } },
     ],
   },
   {
     id: 2,
+    imagem: "/fotos/quiz/q2.png",
     texto: "Como está a comunicação verbal do seu filho(a)?",
     opcoes: [
       { label: "😟 Abaixo do esperado para a idade", valor: "abaixo", peso: { linguagem: 3 } },
@@ -34,6 +36,7 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     id: 3,
+    imagem: "/fotos/quiz/q3.png",
     texto: "Como é a coordenação motora do seu filho(a)?",
     subtexto: "Pintar, recortar, amarrar sapato, segurar lápis…",
     opcoes: [
@@ -44,6 +47,7 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     id: 4,
+    imagem: "/fotos/quiz/q4.png",
     texto: "Seu filho(a) tem diagnóstico ou suspeita de TDAH, TEA ou dificuldade de aprendizado?",
     opcoes: [
       { label: "✅ Sim, já tem diagnóstico confirmado", valor: "diagnosticado", peso: { necessidade_especial: 3 } },
@@ -53,6 +57,7 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     id: 5,
+    imagem: "/fotos/quiz/q5.png",
     texto: "Como seu filho(a) reage quando fica frustrado(a)?",
     opcoes: [
       { label: "😤 Chora muito, faz birra ou se fecha", valor: "intenso" },
@@ -62,6 +67,7 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     id: 6,
+    imagem: "/fotos/quiz/q6.png",
     texto: "Com que frequência você consegue sentar com seu filho(a) para atividades educativas?",
     opcoes: [
       { label: "😔 Raramente — menos de 1x por semana", valor: "raro" },
@@ -71,15 +77,17 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     id: 7,
+    imagem: "/fotos/quiz/q7.png",
     texto: "Qual é a sua maior dificuldade para estimular seu filho(a) em casa?",
     opcoes: [
       { label: "🤷 Não sei por onde começar ou o que fazer", valor: "sem_conhecimento" },
       { label: "⏱️ Falta de tempo na rotina", valor: "sem_tempo" },
-      { label: "😤 Meu filho não quer participar das atividades", valor: "resistencia" },
+      { label: "😤 Meu filho não quer participar", valor: "resistencia" },
     ],
   },
   {
     id: 8,
+    imagem: "/fotos/quiz/q8.png",
     texto: "Seu filho(a) demonstra interesse em aprender coisas novas?",
     opcoes: [
       { label: "😶 Pouco — é difícil engajá-lo(a)", valor: "baixo" },
@@ -118,6 +126,7 @@ export default function Quiz() {
   const [respostas, setRespostas] = useState<string[]>([]);
   const [selecionado, setSelecionado] = useState<string | null>(null);
   const [direction, setDirection] = useState(1);
+  const [bloqueado, setBloqueado] = useState(false);
 
   if (!state) {
     navigate("/");
@@ -126,36 +135,38 @@ export default function Quiz() {
 
   const { nomeMae, nomeCrianca, idadeCrianca } = state;
   const pergunta = PERGUNTAS[atual];
-  const progresso = ((atual) / PERGUNTAS.length) * 100;
+  const progresso = (atual / PERGUNTAS.length) * 100;
 
   function handleSelecionar(valor: string) {
+    if (bloqueado) return;
     setSelecionado(valor);
-  }
+    setBloqueado(true);
 
-  function handleProximo() {
-    if (!selecionado) return;
-    const novasRespostas = [...respostas, selecionado];
+    setTimeout(() => {
+      const novasRespostas = [...respostas, valor];
 
-    if (atual < PERGUNTAS.length - 1) {
-      setRespostas(novasRespostas);
-      setDirection(1);
-      setAtual(atual + 1);
-      setSelecionado(null);
-    } else {
-      const resultado = calcularResultado(novasRespostas);
-      navigate("/resultado", {
-        state: { nomeMae, nomeCrianca, idadeCrianca, respostas: novasRespostas, resultado },
-      });
-    }
+      if (atual < PERGUNTAS.length - 1) {
+        setRespostas(novasRespostas);
+        setDirection(1);
+        setAtual(atual + 1);
+        setSelecionado(null);
+        setBloqueado(false);
+      } else {
+        const resultado = calcularResultado(novasRespostas);
+        navigate("/resultado", {
+          state: { nomeMae, nomeCrianca, idadeCrianca, respostas: novasRespostas, resultado },
+        });
+      }
+    }, 350);
   }
 
   function handleAnterior() {
     if (atual === 0) return;
-    const novasRespostas = respostas.slice(0, -1);
-    setRespostas(novasRespostas);
+    setRespostas(respostas.slice(0, -1));
     setDirection(-1);
     setAtual(atual - 1);
     setSelecionado(null);
+    setBloqueado(false);
   }
 
   function calcularResultado(resp: string[]) {
@@ -170,15 +181,10 @@ export default function Quiz() {
       }
     });
 
-    const prioridade = resp[9]; // última pergunta
-
+    const prioridade = resp[9];
     const max = Object.entries(dificuldades).sort(([, a], [, b]) => b - a)[0][0];
     const totalScore = Object.values(dificuldades).reduce((a, b) => a + b, 0);
-
-    let nivel: "critico" | "moderado" | "leve";
-    if (totalScore >= 6) nivel = "critico";
-    else if (totalScore >= 3) nivel = "moderado";
-    else nivel = "leve";
+    const nivel: "critico" | "moderado" | "leve" = totalScore >= 6 ? "critico" : totalScore >= 3 ? "moderado" : "leve";
 
     return {
       nivel,
@@ -189,9 +195,9 @@ export default function Quiz() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Header do quiz */}
+      {/* Header */}
       <header className="px-4 pt-5 pb-3 max-w-2xl mx-auto w-full">
-        <div className="flex items-center gap-3 mb-3">
+        <div className="flex items-center gap-3 mb-2">
           <div className="w-8 h-8 rounded-full gradient-bg flex items-center justify-center flex-shrink-0">
             <Brain className="w-4 h-4 text-white" />
           </div>
@@ -208,16 +214,28 @@ export default function Quiz() {
         </p>
       </header>
 
-      {/* Pergunta */}
+      {/* Conteúdo */}
       <main className="flex-1 px-4 max-w-2xl mx-auto w-full pb-6">
         <AnimatePresence mode="wait">
           <motion.div
             key={atual}
-            initial={{ opacity: 0, x: direction * 40 }}
+            initial={{ opacity: 0, x: direction * 50 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: direction * -40 }}
-            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, x: direction * -50 }}
+            transition={{ duration: 0.28 }}
           >
+            {/* Imagem da pergunta */}
+            {pergunta.imagem && (
+              <div className="rounded-3xl overflow-hidden mb-4 border border-border card-shadow">
+                <img
+                  src={pergunta.imagem}
+                  alt=""
+                  className="w-full h-48 object-cover object-top"
+                />
+              </div>
+            )}
+
+            {/* Card da pergunta */}
             <div className="bg-card rounded-3xl p-5 card-shadow border border-border mb-4">
               <h2 className="font-display text-xl text-foreground leading-snug mb-1">
                 {pergunta.texto}
@@ -227,16 +245,18 @@ export default function Quiz() {
               )}
             </div>
 
+            {/* Opções — clique avança direto */}
             <div className="space-y-3">
               {pergunta.opcoes.map((opcao) => (
                 <button
                   key={opcao.valor}
                   onClick={() => handleSelecionar(opcao.valor)}
+                  disabled={bloqueado}
                   className={`w-full text-left border-2 rounded-2xl p-4 transition-all duration-200 ${
                     selecionado === opcao.valor
-                      ? "border-primary bg-primary/10 shadow-md"
-                      : "border-border bg-card hover:border-primary/40 hover:bg-primary/5"
-                  }`}
+                      ? "border-primary bg-primary/10 shadow-md scale-[0.99]"
+                      : "border-border bg-card hover:border-primary/40 hover:bg-primary/5 active:scale-[0.98]"
+                  } ${bloqueado && selecionado !== opcao.valor ? "opacity-40" : ""}`}
                 >
                   <span className="font-semibold text-foreground text-sm leading-snug">{opcao.label}</span>
                 </button>
@@ -245,24 +265,16 @@ export default function Quiz() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Navegação */}
-        <div className="flex gap-3 mt-5">
-          {atual > 0 && (
-            <Button variant="outline" size="default" onClick={handleAnterior} className="flex-shrink-0">
-              <ArrowLeft className="w-4 h-4" />
-            </Button>
-          )}
-          <Button
-            variant="cta"
-            size="default"
-            className="flex-1"
-            onClick={handleProximo}
-            disabled={!selecionado}
+        {/* Botão voltar */}
+        {atual > 0 && (
+          <button
+            onClick={handleAnterior}
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mt-5 transition-colors"
           >
-            {atual < PERGUNTAS.length - 1 ? "Próxima pergunta" : "Ver meu resultado"}
-            <ArrowRight className="w-4 h-4" />
-          </Button>
-        </div>
+            <ArrowLeft className="w-4 h-4" />
+            Voltar
+          </button>
+        )}
       </main>
     </div>
   );
