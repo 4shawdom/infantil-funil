@@ -22,7 +22,31 @@ const FOTO_MAE5 = "/fotos/mae5.jpg";
 
 const AVATARES_BAR = [FOTO_MAE1, FOTO_MAE2, FOTO_MAE3, FOTO_MAE4, FOTO_MAE5];
 
-// ─── CTA ──────────────────────────────────────────────
+function scrollParaOferta() {
+  const el = document.getElementById("oferta");
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+// ─── CTA topo — rola para a oferta ────────────────────
+function BotaoCTAScroll({ label = "Quero o Método Pequenos Gênios" }: { label?: string }) {
+  return (
+    <div className="text-center">
+      <button
+        onClick={scrollParaOferta}
+        className="w-full gradient-cta text-white font-extrabold rounded-2xl shadow-xl hover:opacity-95 hover:scale-[1.01] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-3 py-5 text-lg"
+      >
+        <Lock className="w-5 h-5 flex-shrink-0" />
+        {label}
+        <ArrowRight className="w-5 h-5 flex-shrink-0" />
+      </button>
+      <p className="text-xs text-muted-foreground mt-2">
+        🔒 Pagamento seguro · Acesso imediato · Garantia de 7 dias
+      </p>
+    </div>
+  );
+}
+
+// ─── CTA compra — vai para o Cakto ────────────────────
 function BotaoCTA({ label = "Quero o Método Pequenos Gênios", sub }: { label?: string; sub?: string }) {
   return (
     <div className="text-center">
@@ -173,7 +197,7 @@ export default function Vendas() {
               </div>
             </div>
 
-            <BotaoCTA label={`Quero o plano de ${nomeCrianca}`} />
+            <BotaoCTAScroll label={`Quero o plano de ${nomeCrianca}`} />
 
             {/* Mini benefícios */}
             <div className="grid grid-cols-3 gap-2 mt-4">
@@ -427,7 +451,7 @@ export default function Vendas() {
         </section>
 
         {/* ══ BLOCO 7 — OFERTA ════════════════════════════ */}
-        <section className="pb-10">
+        <section id="oferta" className="pb-10">
           <div className="bg-card rounded-3xl border-2 border-primary/30 card-shadow overflow-hidden">
             <div className="gradient-bg px-5 py-3 text-center">
               <p className="text-white text-xs font-bold uppercase tracking-wide">🔥 Oferta especial: 62% de desconto</p>
