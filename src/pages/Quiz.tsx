@@ -97,6 +97,7 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     id: 9,
+    imagem: "/fotos/quiz/q9.png",
     texto: "Como você descreveria o nível de atividade do seu filho(a)?",
     opcoes: [
       { label: "⚡ Muito agitado(a), difícil de controlar", valor: "muito_ativo" },
@@ -106,6 +107,7 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     id: 10,
+    imagem: "/fotos/quiz/q10.png",
     texto: "O que você mais quer desenvolver no seu filho(a) nos próximos 3 meses?",
     subtexto: "Escolha a sua prioridade principal",
     opcoes: [
@@ -258,12 +260,12 @@ export default function Quiz() {
           >
             {/* Imagem da pergunta */}
             {pergunta.imagem && (
-              <div className="rounded-3xl overflow-hidden mb-4 border border-border card-shadow bg-muted">
+              <div className="rounded-3xl overflow-hidden mb-4 border border-border card-shadow w-full"
+                   style={{ aspectRatio: "3/4", maxHeight: "380px" }}>
                 <img
                   src={pergunta.imagem}
                   alt=""
-                  className="w-full h-56 object-cover object-center"
-                  style={{ imageRendering: "auto" }}
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
             )}
