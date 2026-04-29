@@ -117,23 +117,80 @@ const PERGUNTAS: Pergunta[] = [
   },
 ];
 
+const IDADES = ["2 anos","3 anos","4 anos","5 anos","6 anos","7 anos","8 anos","9 anos","10 anos","11 anos","12 anos"];
+
+function TelaInicio({ onComecar }: { onComecar: (nomeMae: string, nomeCrianca: string, idadeCrianca: string) => void }) {
+  const [nomeMae, setNomeMae] = useState("");
+  const [nomeCrianca, setNomeCrianca] = useState("");
+  const [idadeCrianca, setIdadeCrianca] = useState("");
+  const [erro, setErro] = useState("");
+
+  function handleSubmit() {
+    if (!nomeMae.trim() || !nomeCrianca.trim() || !idadeCrianca) {
+      setErro("Preencha todos os campos para continuar.");
+      return;
+    }
+    onComecar(nomeMae.trim(), nomeCrianca.trim(), idadeCrianca);
+  }
+
+  return (
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4">
+      <div className="w-full max-w-sm">
+        <div className="text-center mb-6">
+          <span className="text-4xl block mb-2">🧠</span>
+          <h1 className="font-display text-2xl text-foreground mb-1">Vamos começar!</h1>
+          <p className="text-muted-foreground text-sm">Preencha para personalizar o diagnóstico</p>
+        </div>
+        <div className="bg-card rounded-3xl p-5 card-shadow border border-border space-y-4">
+          <div>
+            <label className="text-sm font-semibold text-foreground mb-1 block">Seu nome</label>
+            <input type="text" placeholder="Ex: Ana Paula" value={nomeMae} onChange={e => setNomeMae(e.target.value)}
+              className="w-full border-2 border-border rounded-xl px-4 py-3 text-foreground bg-background focus:outline-none focus:border-primary transition-colors text-sm" />
+          </div>
+          <div>
+            <label className="text-sm font-semibold text-foreground mb-1 block">Nome do seu filho(a)</label>
+            <input type="text" placeholder="Ex: Miguel" value={nomeCrianca} onChange={e => setNomeCrianca(e.target.value)}
+              className="w-full border-2 border-border rounded-xl px-4 py-3 text-foreground bg-background focus:outline-none focus:border-primary transition-colors text-sm" />
+          </div>
+          <div>
+            <label className="text-sm font-semibold text-foreground mb-1 block">Idade do seu filho(a)</label>
+            <div className="grid grid-cols-4 gap-2">
+              {IDADES.map(idade => (
+                <button key={idade} onClick={() => setIdadeCrianca(idade)}
+                  className={`border-2 rounded-xl py-2 text-xs font-bold transition-all ${idadeCrianca === idade ? "border-primary bg-primary/10 text-primary" : "border-border bg-background text-muted-foreground hover:border-primary/50"}`}>
+                  {idade}
+                </button>
+              ))}
+            </div>
+          </div>
+          {erro && <p className="text-destructive text-sm text-center">{erro}</p>}
+          <button onClick={handleSubmit}
+            className="w-full gradient-cta text-white font-extrabold rounded-2xl py-4 text-base hover:opacity-95 transition-all">
+            Iniciar diagnóstico →
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Quiz() {
   const navigate = useNavigate();
   const location = useLocation();
-  const state = location.state as { nomeMae: string; nomeCrianca: string; idadeCrianca: string } | null;
+  const stateExterno = location.state as { nomeMae: string; nomeCrianca: string; idadeCrianca: string } | null;
 
+  const [dadosIniciais, setDadosIniciais] = useState<{ nomeMae: string; nomeCrianca: string; idadeCrianca: string } | null>(stateExterno);
   const [atual, setAtual] = useState(0);
   const [respostas, setRespostas] = useState<string[]>([]);
   const [selecionado, setSelecionado] = useState<string | null>(null);
   const [direction, setDirection] = useState(1);
   const [bloqueado, setBloqueado] = useState(false);
 
-  if (!state) {
-    navigate("/");
-    return null;
+  if (!dadosIniciais) {
+    return <TelaInicio onComecar={(nomeMae, nomeCrianca, idadeCrianca) => setDadosIniciais({ nomeMae, nomeCrianca, idadeCrianca })} />;
   }
 
-  const { nomeMae, nomeCrianca, idadeCrianca } = state;
+  const { nomeMae, nomeCrianca, idadeCrianca } = dadosIniciais;
   const pergunta = PERGUNTAS[atual];
   const progresso = (atual / PERGUNTAS.length) * 100;
 
