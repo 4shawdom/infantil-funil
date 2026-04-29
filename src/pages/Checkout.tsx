@@ -117,7 +117,7 @@ export default function Checkout() {
               </div>
               <p className="text-xs text-muted-foreground italic">
                 "Meu filho tem 5 anos e em 3 semanas já noto diferença enorme no foco dele. Melhor investimento que fiz!"
-                <span className="font-semibold not-italic text-foreground"> — Camila S., SP</span>
+                <span className="font-semibold not-italic text-foreground">, Camila S., SP</span>
               </p>
             </div>
           </div>
@@ -241,7 +241,7 @@ export default function Checkout() {
           <p className="text-xs text-muted-foreground text-center">
             {metodoPagamento === "cartao"
               ? "Em até 12x no cartão de crédito"
-              : `Pague R$${Math.round(total * 0.95)} no PIX — 5% de desconto à vista`}
+              : `Pague R$${Math.round(total * 0.95)} no PIX com 5% de desconto`}
           </p>
         </motion.div>
 

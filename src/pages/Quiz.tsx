@@ -19,8 +19,8 @@ const PERGUNTAS: Pergunta[] = [
     texto: "Seu filho(a) consegue manter o foco em uma atividade por mais de 5 minutos?",
     subtexto: "Considere brincadeiras, desenhos, histórias…",
     opcoes: [
-      { label: "🚫 Raramente — desiste muito rápido", valor: "muito_dificil", peso: { atencao: 3 } },
-      { label: "😕 Às vezes — depende da atividade", valor: "moderado", peso: { atencao: 1 } },
+      { label: "🚫 Raramente: desiste muito rápido", valor: "muito_dificil", peso: { atencao: 3 } },
+      { label: "😕 Às vezes, depende da atividade", valor: "moderado", peso: { atencao: 1 } },
       { label: "✅ Sim, normalmente consegue", valor: "ok", peso: { atencao: 0 } },
     ],
   },
@@ -30,7 +30,7 @@ const PERGUNTAS: Pergunta[] = [
     texto: "Como está a comunicação verbal do seu filho(a)?",
     opcoes: [
       { label: "😟 Abaixo do esperado para a idade", valor: "abaixo", peso: { linguagem: 3 } },
-      { label: "😐 Na média — comunica o básico", valor: "media", peso: { linguagem: 1 } },
+      { label: "😐 Na média, comunica o básico", valor: "media", peso: { linguagem: 1 } },
       { label: "🗣️ Se comunica bem, sem dificuldades", valor: "ok", peso: { linguagem: 0 } },
     ],
   },
@@ -70,7 +70,7 @@ const PERGUNTAS: Pergunta[] = [
     imagem: "/fotos/quiz/q6.png",
     texto: "Com que frequência você consegue sentar com seu filho(a) para atividades educativas?",
     opcoes: [
-      { label: "😔 Raramente — menos de 1x por semana", valor: "raro" },
+      { label: "😔 Raramente, menos de uma vez por semana", valor: "raro" },
       { label: "📅 2 a 3 vezes por semana", valor: "medio" },
       { label: "🌟 Todos os dias ou quase", valor: "frequente" },
     ],
@@ -90,7 +90,7 @@ const PERGUNTAS: Pergunta[] = [
     imagem: "/fotos/quiz/q8.png",
     texto: "Seu filho(a) demonstra interesse em aprender coisas novas?",
     opcoes: [
-      { label: "😶 Pouco — é difícil engajá-lo(a)", valor: "baixo" },
+      { label: "😶 Pouco, é difícil engajá-lo(a)", valor: "baixo" },
       { label: "🙂 Interesse moderado em algumas coisas", valor: "moderado" },
       { label: "🤩 Muito curioso(a) e animado(a) para aprender", valor: "alto" },
     ],
@@ -101,7 +101,7 @@ const PERGUNTAS: Pergunta[] = [
     texto: "Como você descreveria o nível de atividade do seu filho(a)?",
     opcoes: [
       { label: "⚡ Muito agitado(a), difícil de controlar", valor: "muito_ativo" },
-      { label: "⚖️ Equilibrado — ativo mas consegue parar", valor: "equilibrado" },
+      { label: "⚖️ Equilibrado: ativo, mas consegue parar", valor: "equilibrado" },
       { label: "🐢 Mais calmo(a) e quieto(a) que o esperado", valor: "calmo" },
     ],
   },
@@ -111,10 +111,10 @@ const PERGUNTAS: Pergunta[] = [
     texto: "O que você mais quer desenvolver no seu filho(a) nos próximos 3 meses?",
     subtexto: "Escolha a sua prioridade principal",
     opcoes: [
-      { label: "🎯 Foco e atenção — ficar mais concentrado(a)", valor: "atencao", peso: { prioridade: 1 } },
-      { label: "🗣️ Linguagem e comunicação — falar melhor", valor: "linguagem", peso: { prioridade: 2 } },
+      { label: "🎯 Foco e atenção: ficar mais concentrado(a)", valor: "atencao", peso: { prioridade: 1 } },
+      { label: "🗣️ Linguagem e comunicação: falar melhor", valor: "linguagem", peso: { prioridade: 2 } },
       { label: "✋ Coordenação e habilidades motoras", valor: "coordenacao", peso: { prioridade: 3 } },
-      { label: "🌟 Tudo acima — desenvolvimento completo", valor: "tudo", peso: { prioridade: 4 } },
+      { label: "🌟 Tudo acima: desenvolvimento completo", valor: "tudo", peso: { prioridade: 4 } },
     ],
   },
 ];
@@ -244,7 +244,7 @@ export default function Quiz() {
           </div>
         </div>
         <p className="text-xs text-muted-foreground text-center">
-          Diagnóstico personalizado — <strong>{idadeCrianca}</strong>
+          Diagnóstico personalizado: <strong>{idadeCrianca}</strong>
         </p>
       </header>
 

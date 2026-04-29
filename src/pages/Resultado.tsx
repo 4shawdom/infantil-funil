@@ -162,7 +162,7 @@ const NIVEL_CONFIG = {
     cor: "text-orange-500",
     bg: "bg-orange-50 border-orange-200",
     emoji: "📈",
-    descricao: "{nome} está progredindo, mas com o suporte adequado pode avançar muito mais rápido. O momento de agir é agora — cada semana importa nessa fase.",
+    descricao: "{nome} está progredindo, mas com o suporte adequado pode avançar muito mais rápido. O momento de agir é agora. Cada semana importa nessa fase.",
   },
   leve: {
     label: "No Caminho Certo",
@@ -276,7 +276,7 @@ export default function Resultado() {
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed mb-3">
               <strong className="text-foreground">Olá, {nomeMae}!</strong> O diagnóstico de {nomeCrianca} revelou algo muito importante:
-              não é falta de esforço da sua parte — é falta de <strong className="text-foreground">sistema</strong>.
+              não é falta de esforço da sua parte. É falta de <strong className="text-foreground">sistema</strong>.
             </p>
             <p className="text-muted-foreground text-sm leading-relaxed mb-3">
               Packs de atividades soltas, vídeos no YouTube e dicas espalhadas no Instagram
@@ -298,7 +298,7 @@ export default function Resultado() {
             </div>
             <div className="space-y-3">
               {[
-                { passo: "1", titulo: "Diagnóstico personalizado", desc: "Saber exatamente o que estimular baseado no perfil único da criança — não em receitas genéricas." },
+                { passo: "1", titulo: "Diagnóstico personalizado", desc: "Saber exatamente o que estimular baseado no perfil único da criança, não em receitas genéricas." },
                 { passo: "2", titulo: "Rotina progressiva de 15 min", desc: "Atividades sequenciadas que evoluem conforme a criança avança, sem sobrecarga." },
                 { passo: "3", titulo: "Sistema de progresso visível", desc: "Quando a mãe vê evolução, mantém consistência. Consistência = resultado real." },
               ].map(({ passo, titulo, desc }) => (
@@ -355,7 +355,7 @@ export default function Resultado() {
           </h3>
           <p className="text-muted-foreground text-sm mb-5">
             Com base no diagnóstico, criamos um sistema completo focado em{" "}
-            <strong className="text-foreground">{dificuldade.label.toLowerCase()}</strong> —
+            <strong className="text-foreground">{dificuldade.label.toLowerCase()}</strong>,
             adequado para {idadeCrianca}.
           </p>
 

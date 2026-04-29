@@ -29,7 +29,7 @@ export default function Index() {
             <span className="gradient-text">15 minutos por dia</span>
           </h1>
           <p className="text-muted-foreground text-lg leading-relaxed text-balance">
-            Um sistema guiado que ajuda mães a estimular foco, linguagem e coordenação —
+            Um sistema guiado que ajuda mães a estimular foco, linguagem e coordenação,
             sem precisar de conhecimento pedagógico.
           </p>
         </motion.div>
@@ -54,7 +54,7 @@ export default function Index() {
           <div className="space-y-3">
             {[
               { icon: "🎯", titulo: "Diagnóstico personalizado", desc: "Identifica as áreas que mais precisam de atenção no desenvolvimento do seu filho." },
-              { icon: "📅", titulo: "Rotina de 15 minutos", desc: "Atividades diárias guiadas, com passo a passo completo — sem improviso." },
+              { icon: "📅", titulo: "Rotina de 15 minutos", desc: "Atividades diárias guiadas, com passo a passo completo. Sem improvisação." },
               { icon: "⭐", titulo: "Progresso visível", desc: "Sistema de níveis que mostra a evolução semana a semana." },
             ].map(({ icon, titulo, desc }) => (
               <div key={titulo} className="flex items-start gap-4 bg-card rounded-2xl p-4 border border-border card-shadow">
@@ -94,7 +94,7 @@ export default function Index() {
                 "Mães de crianças de 2 a 12 anos",
                 "Crianças com dificuldade de foco ou atenção",
                 "Casos de TDAH, TEA leve ou atraso na fala",
-                "Mães sem tempo — a rotina cabe em 15 min",
+                "Mães sem tempo: a rotina cabe em 15 minutos",
                 "Quem não tem formação pedagógica",
               ].map((item) => (
                 <div key={item} className="flex items-center gap-2">

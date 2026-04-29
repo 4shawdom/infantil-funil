@@ -43,12 +43,12 @@ function BotaoCTA({ label = "Quero o Método Pequenos Gênios", sub }: { label?:
 
 // ─── FAQ ──────────────────────────────────────────────
 const FAQS = [
-  { q: "Funciona para crianças com TDAH ou TEA?", a: "Sim! O método foi desenhado para ser inclusivo. As atividades são curtas, sensorialmente equilibradas e ajustáveis para crianças neurodivergentes." },
-  { q: "Preciso ter conhecimento pedagógico?", a: "Não! O passo a passo é tão claro que qualquer mãe consegue aplicar, independente de formação." },
-  { q: "Meu filho vai querer participar?", a: "As atividades são lúdicas e gamificadas — pensadas para engajar crianças de 3 a 8 anos. A maioria das mães relata que os filhos pedem para fazer." },
-  { q: "Em quanto tempo vejo resultado?", a: "A maioria das mães nota diferença nas primeiras 2 semanas. Resultados consistentes aparecem entre 4 e 8 semanas de uso regular." },
-  { q: "Como funciona a garantia de 7 dias?", a: "Se por qualquer motivo não gostar, basta enviar uma mensagem e devolvemos 100% do valor. Sem burocracia, sem perguntas." },
-  { q: "É um app ou material físico?", a: "É um web app — acessa pelo celular, tablet ou computador. Sem instalar nada. Acesso liberado imediatamente após a compra." },
+  { q: "Funciona para crianças com TDAH ou TEA?", a: "Sim! O método foi desenvolvido para ser inclusivo. As atividades são curtas, sensorialmente equilibradas e adaptáveis para crianças neurodivergentes." },
+  { q: "Preciso ter conhecimento pedagógico?", a: "Não! O passo a passo é tão claro que qualquer mãe consegue aplicar, independentemente de formação." },
+  { q: "Meu filho vai querer participar?", a: "As atividades são lúdicas e interativas, desenvolvidas para engajar crianças de 2 a 12 anos. A maioria das mães relata que os filhos pedem para fazer." },
+  { q: "Em quanto tempo vejo resultado?", a: "A maioria das mães nota diferença nas primeiras duas semanas. Resultados consistentes aparecem entre quatro e oito semanas de uso regular." },
+  { q: "Como funciona a garantia de 7 dias?", a: "Se por qualquer motivo você não ficar satisfeita, basta enviar uma mensagem e devolvemos 100% do valor. Sem burocracia e sem perguntas." },
+  { q: "É um aplicativo ou material físico?", a: "É um web app que pode ser acessado pelo celular, tablet ou computador. Não é necessário instalar nada. O acesso é liberado imediatamente após a compra." },
 ];
 
 function FaqItem({ q, a }: { q: string; a: string }) {
@@ -98,7 +98,7 @@ const DEPOIMENTOS = [
     nome: "Priscila Moura",
     local: "Rio de Janeiro, RJ",
     tempo: "há 3 dias",
-    texto: "Comprei sem muita expectativa porque já tinha tentado vários métodos. Mas é COMPLETAMENTE diferente. Não é um pack de atividades soltas — é um sistema de verdade. Vale muito mais do que paguei.",
+    texto: "Comprei sem muita expectativa porque já tinha tentado vários métodos. Mas é COMPLETAMENTE diferente. Não é um pacote de atividades soltas. É um sistema de verdade. Vale muito mais do que paguei.",
     tag: "Verificado ✓",
     estrelas: 5,
   },
@@ -132,7 +132,7 @@ export default function Vendas() {
             {/* Badge urgência */}
             <div className="flex justify-center mb-4">
               <div className="inline-flex items-center gap-2 bg-red-50 border border-red-200 rounded-full px-4 py-1.5 text-red-600 text-xs font-bold animate-pulse">
-                <Zap className="w-3.5 h-3.5" /> Oferta com 62% OFF — válida por tempo limitado
+                <Zap className="w-3.5 h-3.5" /> Oferta com 62% OFF, válida por tempo limitado
               </div>
             </div>
 
@@ -229,7 +229,7 @@ export default function Vendas() {
               <strong className="text-foreground">nada disso tem sequência, progressão ou personalização.</strong>
             </p>
             <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-              Você tenta uma coisa hoje, outra amanhã — a criança perde interesse e você fica com a sensação de que{" "}
+              Você tenta uma coisa hoje, outra amanhã. A criança perde o interesse e você fica com a sensação de que{" "}
               <em>"nada funciona com o meu filho."</em>
             </p>
             <div className="bg-orange-50 border border-orange-200 rounded-2xl p-3">
@@ -249,9 +249,9 @@ export default function Vendas() {
           </div>
           <div className="space-y-3">
             {[
-              { n: "01", emoji: "🎯", titulo: "Diagnóstico → Plano personalizado", desc: "Seu filho é único. O sistema identifica o perfil dele e monta uma rotina focada nas áreas que mais precisam de atenção." },
-              { n: "02", emoji: "📅", titulo: "Rotina de 15 min por dia", desc: "Toda manhã você abre o app e encontra as atividades prontas. Passo a passo completo. Sem planejar, sem improvisar." },
-              { n: "03", emoji: "⭐", titulo: "Progresso visível semana a semana", desc: "Seu filho sobe de nível conforme avança. Você acompanha a evolução e mantém a consistência que gera resultado real." },
+              { n: "01", emoji: "🎯", titulo: "Diagnóstico e plano personalizado", desc: "Seu filho é único. O sistema identifica o perfil dele e organiza uma rotina focada nas áreas que mais precisam de atenção." },
+              { n: "02", emoji: "📅", titulo: "Rotina de 15 minutos por dia", desc: "Toda manhã você abre o aplicativo e encontra as atividades prontas. Passo a passo completo. Sem planejamento, sem improvisação." },
+              { n: "03", emoji: "⭐", titulo: "Progresso visível semana a semana", desc: "Seu filho avança de nível conforme progride. Você acompanha a evolução e mantém a consistência que gera resultado real." },
             ].map(({ n, emoji, titulo, desc }) => (
               <div key={n} className="flex gap-4 bg-card rounded-2xl p-4 border border-border card-shadow">
                 <div className="w-12 h-12 rounded-2xl gradient-bg flex items-center justify-center flex-shrink-0 shadow-md">
@@ -274,7 +274,7 @@ export default function Vendas() {
 
           <div className="bg-card rounded-3xl border-2 border-primary/20 overflow-hidden card-shadow">
             <div className="gradient-bg p-4 text-center">
-              <p className="text-white font-bold text-sm">📦 Método Pequenos Gênios — Acesso Completo</p>
+              <p className="text-white font-bold text-sm">📦 Método Pequenos Gênios: Acesso Completo</p>
             </div>
 
             <div className="p-4 space-y-0 divide-y divide-border">
@@ -282,43 +282,43 @@ export default function Vendas() {
                 {
                   emoji: "🧠",
                   item: "Diagnóstico personalizado do seu filho",
-                  detalhe: "Identifica exatamente o que trabalhar — sem chute, sem genérico",
+                  detalhe: "Identifica exatamente o que trabalhar. Sem suposições, sem receitas genéricas.",
                   valor: 47,
                 },
                 {
                   emoji: "📅",
                   item: "Rotina diária guiada de 15 minutos",
-                  detalhe: "3 atividades por dia com passo a passo completo — sem improviso",
+                  detalhe: "Três atividades por dia com passo a passo completo. Sem improvisação.",
                   valor: 67,
                 },
                 {
                   emoji: "📚",
-                  item: "Biblioteca com +80 atividades práticas",
-                  detalhe: "Selecionadas por especialistas em desenvolvimento infantil",
+                  item: "Biblioteca com mais de 80 atividades práticas",
+                  detalhe: "Selecionadas por especialistas em desenvolvimento infantil.",
                   valor: 57,
                 },
                 {
                   emoji: "⭐",
                   item: "Sistema de 5 níveis de evolução",
-                  detalhe: "Seu filho avança no ritmo dele — e você vê o progresso acontecer",
+                  detalhe: "Seu filho avança no próprio ritmo, e você acompanha o progresso acontecer.",
                   valor: 37,
                 },
                 {
                   emoji: "🎯",
                   item: "Foco em atenção, linguagem e coordenação",
-                  detalhe: "As 3 áreas mais críticas dos 2 aos 12 anos — num só lugar",
+                  detalhe: "As três áreas mais críticas dos 2 aos 12 anos, reunidas em um só sistema.",
                   valor: 47,
                 },
                 {
                   emoji: "📱",
-                  item: "Web app — acesso pelo celular, agora",
-                  detalhe: "Sem instalar nada. Funciona em qualquer dispositivo",
+                  item: "Aplicativo web: acesso pelo celular, agora",
+                  detalhe: "Não é necessário instalar nada. Funciona em qualquer dispositivo.",
                   valor: 27,
                 },
                 {
                   emoji: "♾️",
-                  item: "Acesso vitalício + atualizações grátis",
-                  detalhe: "Paga uma vez e usa para sempre — até para os próximos filhos",
+                  item: "Acesso vitalício com atualizações incluídas",
+                  detalhe: "Pague uma vez e use para sempre, inclusive para os próximos filhos.",
                   valor: 47,
                 },
               ].map(({ emoji, item, detalhe, valor }) => (
@@ -430,7 +430,7 @@ export default function Vendas() {
         <section className="pb-10">
           <div className="bg-card rounded-3xl border-2 border-primary/30 card-shadow overflow-hidden">
             <div className="gradient-bg px-5 py-3 text-center">
-              <p className="text-white text-xs font-bold uppercase tracking-wide">🔥 Oferta especial — 62% de desconto</p>
+              <p className="text-white text-xs font-bold uppercase tracking-wide">🔥 Oferta especial: 62% de desconto</p>
             </div>
             <div className="p-5">
               <h2 className="font-display text-2xl text-foreground text-center mb-4">
@@ -448,7 +448,7 @@ export default function Vendas() {
                   <span className="text-xs font-bold text-accent">Você economiza R$70</span>
                 </div>
               </div>
-              <BotaoCTA label="Garantir acesso agora — R$27" />
+              <BotaoCTA label="Garantir acesso agora por R$27" />
               <p className="text-center text-xs text-muted-foreground mt-3">
                 💳 Parcelado em até 12x de <strong>R$2,82</strong> no cartão
               </p>
