@@ -25,8 +25,9 @@ export default function Index() {
             ✨ Diagnóstico gratuito e personalizado
           </div>
           <h1 className="font-display text-3xl md:text-4xl text-foreground leading-tight mb-4 text-balance">
-            Descubra como desenvolver o potencial do seu filho em{" "}
-            <span className="gradient-text">15 minutos por dia</span>
+            Você só precisa de{" "}
+            <span className="gradient-text">15 minutos por dia</span>{" "}
+            para parar de se sentir perdida e saber como estimular o desenvolvimento do seu filho
           </h1>
           <p className="text-muted-foreground text-lg leading-relaxed text-balance">
             Um sistema guiado que ajuda mães a estimular foco, linguagem e coordenação,
