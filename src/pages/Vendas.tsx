@@ -162,8 +162,9 @@ export default function Vendas() {
 
             {/* Headline */}
             <h1 className="font-display text-3xl md:text-4xl text-foreground leading-tight text-center mb-3 text-balance">
-              Seu filho pode superar o atraso cognitivo em{" "}
-              <span className="gradient-text">15 minutos por dia</span>
+              Você só precisa de{" "}
+              <span className="gradient-text">15 minutos por dia</span>{" "}
+              para parar de se sentir perdida e finalmente saber como estimular seu filho
             </h1>
             <p className="text-muted-foreground text-lg text-center mb-5 text-balance">
               Sem saber pedagogia. Sem rotina complicada. Mesmo que outros métodos já tenham falhado antes.
