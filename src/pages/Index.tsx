@@ -30,8 +30,7 @@ export default function Index() {
             para parar de se sentir perdida e saber como estimular o desenvolvimento do seu filho
           </h1>
           <p className="text-muted-foreground text-lg leading-relaxed text-balance">
-            Um sistema guiado que ajuda mães a estimular foco, linguagem e coordenação,
-            sem precisar de conhecimento pedagógico.
+            Para mães que sentem que poderiam fazer mais pelo filho, mas não sabem por onde começar.
           </p>
         </motion.div>
 
