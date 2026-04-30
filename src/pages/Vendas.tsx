@@ -242,28 +242,6 @@ export default function Vendas() {
           </div>
         </section>
 
-        {/* ══ BLOCO 3 — PROBLEMA ══════════════════════════ */}
-        <section className="pb-10">
-          <div className="bg-card rounded-3xl p-5 border border-border card-shadow">
-            <div className="flex items-start gap-3 mb-4">
-              <AlertTriangle className="w-6 h-6 text-orange-500 flex-shrink-0 mt-0.5" />
-              <h2 className="font-display text-xl text-foreground">Por que atividades soltas não funcionam?</h2>
-            </div>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-              A internet está cheia de packs, sugestões espalhadas e vídeos genéricos. O problema é que{" "}
-              <strong className="text-foreground">nada disso tem sequência, progressão ou personalização.</strong>
-            </p>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-              Você tenta uma coisa hoje, outra amanhã. A criança perde o interesse e você fica com a sensação de que{" "}
-              <em>"nada funciona com o meu filho."</em>
-            </p>
-            <div className="bg-orange-50 border border-orange-200 rounded-2xl p-3">
-              <p className="text-sm text-foreground font-semibold text-center">
-                🧠 O cérebro infantil aprende por <strong>repetição estruturada</strong>, não por estímulos aleatórios.
-              </p>
-            </div>
-          </div>
-        </section>
 
         {/* ══ BLOCO 4 — MÉTODO ════════════════════════════ */}
         <section className="pb-10">
