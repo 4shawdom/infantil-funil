@@ -198,7 +198,7 @@ export default function Vendas() {
               </div>
             </div>
 
-            <BotaoCTAScroll label={`Quero o plano de ${nomeCrianca}`} />
+            <BotaoCTAScroll label="Quero desenvolver meu filho" />
 
             {/* Mini benefícios */}
             <div className="grid grid-cols-3 gap-2 mt-4">
