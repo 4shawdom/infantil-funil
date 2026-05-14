@@ -139,10 +139,13 @@ function TelaIdade({ onComecar }: { onComecar: (idadeCrianca: string) => void })
         </div>
         <form onSubmit={handleContinuar} className="space-y-4">
           <input
-            type="text"
-            placeholder="Ex: 5 anos, 8 anos, 12 anos..."
+            type="number"
+            inputMode="numeric"
+            min="1"
+            max="99"
+            placeholder="Ex: 5"
             value={idade}
-            onChange={(e) => { setIdade(e.target.value); setErro(""); }}
+            onChange={(e) => { setIdade(e.target.value.replace(/\D/g, "")); setErro(""); }}
             autoFocus
             className="w-full border-2 border-border rounded-2xl px-5 py-4 text-foreground bg-card focus:outline-none focus:border-primary transition-colors text-sm text-center font-semibold"
           />
