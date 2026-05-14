@@ -44,7 +44,8 @@ export default function Index() {
           <img
             src="/fotos/hero.png"
             alt="Mãe e filho fazendo atividades juntos"
-            className="w-full h-56 object-cover object-top"
+            className="w-full object-cover"
+            style={{ height: "280px", objectPosition: "center 60%" }}
           />
         </motion.div>
 
