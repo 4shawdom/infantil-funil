@@ -173,9 +173,10 @@ export default function Vendas() {
             {/* Foto hero */}
             <div className="rounded-3xl overflow-hidden mb-5 card-shadow border border-border">
               <img
-                src={FOTO_HERO}
-                alt="Mãe e filho fazendo atividades educativas juntos"
-                className="w-full h-52 object-cover"
+                src="/fotos/hero-vendas.png"
+                alt="Mãe e filho fazendo atividades com o aplicativo Pequenos Gênios"
+                className="w-full object-cover"
+                style={{ height: "280px", objectPosition: "center center" }}
                 loading="eager"
               />
             </div>
