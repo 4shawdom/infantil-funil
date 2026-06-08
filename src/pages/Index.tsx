@@ -7,7 +7,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-2xl mx-auto px-4 pb-16">
+      <main className="max-w-2xl mx-auto px-4 pb-16">
 
         {/* Logo */}
         <div className="pt-8 pb-6 text-center">
@@ -42,10 +42,15 @@ export default function Index() {
           className="rounded-3xl overflow-hidden mb-8 card-shadow border border-border"
         >
           <img
-            src="/fotos/hero.png"
+            src="/fotos/hero.webp"
             alt="Mãe e filho fazendo atividades juntos"
             className="w-full object-cover"
             style={{ height: "280px", objectPosition: "center 60%" }}
+            width={1000}
+            height={280}
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
           />
         </motion.div>
 
@@ -151,7 +156,7 @@ export default function Index() {
           </div>
         </motion.div>
 
-      </div>
+      </main>
     </div>
   );
 }

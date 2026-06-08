@@ -15,7 +15,7 @@ interface Pergunta {
 const PERGUNTAS: Pergunta[] = [
   {
     id: 1,
-    imagem: "/fotos/quiz/q1.png",
+    imagem: "/fotos/quiz/q1.webp",
     texto: "Seu filho(a) consegue manter o foco em uma atividade por mais de 5 minutos?",
     subtexto: "Considere brincadeiras, desenhos, histórias…",
     opcoes: [
@@ -26,7 +26,7 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     id: 2,
-    imagem: "/fotos/quiz/q2.png",
+    imagem: "/fotos/quiz/q2.webp",
     texto: "Como está a comunicação verbal do seu filho(a)?",
     opcoes: [
       { label: "😟 Abaixo do esperado para a idade", valor: "abaixo", peso: { linguagem: 3 } },
@@ -36,7 +36,7 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     id: 3,
-    imagem: "/fotos/quiz/q3.png",
+    imagem: "/fotos/quiz/q3.webp",
     texto: "Como é a coordenação motora do seu filho(a)?",
     subtexto: "Pintar, recortar, amarrar sapato, segurar lápis…",
     opcoes: [
@@ -47,7 +47,7 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     id: 4,
-    imagem: "/fotos/quiz/q4.png",
+    imagem: "/fotos/quiz/q4.webp",
     texto: "Seu filho(a) tem diagnóstico ou suspeita de TDAH, TEA ou dificuldade de aprendizado?",
     opcoes: [
       { label: "✅ Sim, já tem diagnóstico confirmado", valor: "diagnosticado", peso: { necessidade_especial: 3 } },
@@ -57,7 +57,7 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     id: 5,
-    imagem: "/fotos/quiz/q5.png",
+    imagem: "/fotos/quiz/q5.webp",
     texto: "Como seu filho(a) reage quando fica frustrado(a)?",
     opcoes: [
       { label: "😤 Chora muito, faz birra ou se fecha", valor: "intenso" },
@@ -67,7 +67,7 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     id: 6,
-    imagem: "/fotos/quiz/q6.png",
+    imagem: "/fotos/quiz/q6.webp",
     texto: "Com que frequência você consegue sentar com seu filho(a) para atividades educativas?",
     opcoes: [
       { label: "😔 Raramente, menos de uma vez por semana", valor: "raro" },
@@ -77,7 +77,7 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     id: 7,
-    imagem: "/fotos/quiz/q7.png",
+    imagem: "/fotos/quiz/q7.webp",
     texto: "Qual é a sua maior dificuldade para estimular seu filho(a) em casa?",
     opcoes: [
       { label: "🤷 Não sei por onde começar ou o que fazer", valor: "sem_conhecimento" },
@@ -87,7 +87,7 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     id: 8,
-    imagem: "/fotos/quiz/q8.png",
+    imagem: "/fotos/quiz/q8.webp",
     texto: "Seu filho(a) demonstra interesse em aprender coisas novas?",
     opcoes: [
       { label: "😶 Pouco, é difícil engajá-lo(a)", valor: "baixo" },
@@ -97,7 +97,7 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     id: 9,
-    imagem: "/fotos/quiz/q9.png",
+    imagem: "/fotos/quiz/q9.webp",
     texto: "Como você descreveria o nível de atividade do seu filho(a)?",
     opcoes: [
       { label: "⚡ Muito agitado(a), difícil de controlar", valor: "muito_ativo" },
@@ -107,7 +107,7 @@ const PERGUNTAS: Pergunta[] = [
   },
   {
     id: 10,
-    imagem: "/fotos/quiz/q10.png",
+    imagem: "/fotos/quiz/q10.webp",
     texto: "O que você mais quer desenvolver no seu filho(a) nos próximos 3 meses?",
     subtexto: "Escolha a sua prioridade principal",
     opcoes: [
@@ -276,6 +276,10 @@ export default function Quiz() {
                   src={pergunta.imagem}
                   alt=""
                   className="w-full h-full object-cover object-center"
+                  width={700}
+                  height={933}
+                  loading={atual === 0 ? "eager" : "lazy"}
+                  decoding="async"
                 />
               </div>
             )}

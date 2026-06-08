@@ -13,7 +13,6 @@ function irParaCakto() { window.location.href = LINK_CAKTO; }
 interface VendasState { nomeMae?: string; nomeCrianca?: string; idadeCrianca?: string; }
 
 // Fotos reais das mães
-const FOTO_HERO = "/fotos/hero.png";
 const FOTO_MAE1 = "/fotos/mae1.jpg";
 const FOTO_MAE2 = "/fotos/mae2.jpg";
 const FOTO_MAE3 = "/fotos/mae3.jpg";
@@ -173,11 +172,15 @@ export default function Vendas() {
             {/* Foto hero */}
             <div className="rounded-3xl overflow-hidden mb-5 card-shadow border border-border">
               <img
-                src="/fotos/hero-vendas.png"
+                src="/fotos/hero-vendas.webp"
                 alt="Mãe e filho fazendo atividades com o aplicativo Pequenos Gênios"
                 className="w-full object-cover"
                 style={{ height: "280px", objectPosition: "center center" }}
+                width={1000}
+                height={280}
+                fetchPriority="high"
                 loading="eager"
+                decoding="async"
               />
             </div>
 
